@@ -4,152 +4,202 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Alicemplea | بوابة العمل والسكن والخدمات في إسبانيا وفرنسا</title>
-  <script src="https://tailwindcss.com"></script>
   <link href="https://googleapis.com" rel="stylesheet">
   <style>
-    :root {
-      --bg-cream: #F5F3EE;
-      --bg-card: #FFFFFF;
-      --bg-soft: #EBE8E0;
-      --forest: #133A32;
-      --terracotta: #C85A28;
-      --sage: #E6ECE8;
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Cairo', sans-serif; }
+    body { background: #E9E5DC; color: #1F2933; }
+    .app-shell {
+      max-width: 480px; margin: 0 auto; min-height: 100vh;
+      background: #F5F3EE; position: relative; padding-bottom: 85px;
+      box-shadow: 0 0 30px rgba(0,0,0,0.08);
     }
-    body {
-      font-family: 'Cairo', sans-serif;
-      background-color: var(--bg-cream);
-      color: #1F2933;
-      padding-bottom: 85px;
+    .alert-bar {
+      background: #F2E2D8; color: #8C3B19; font-size: 11px; font-weight: 700;
+      padding: 8px 12px; text-align: center; border-bottom: 1px solid #E5CEC0;
     }
-    .no-scrollbar::-webkit-scrollbar { display: none; }
-    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    .header {
+      background: rgba(245, 243, 238, 0.96); position: sticky; top: 0; z-index: 40;
+      padding: 12px 16px 8px; border-bottom: 1px solid #E6E1D6;
+    }
+    .header-top { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 12px; }
+    .brand { display: flex; align-items: center; gap: 8px; }
+    .logo-img {
+      width: 44px; height: 44px; border-radius: 50%; object-fit: cover;
+      border: 2px solid #133A32; background: #133A32;
+    }
+    .brand-name { font-size: 20px; font-weight: 900; color: #1A1A1A; }
+    .lang-box {
+      display: flex; align-items: center; gap: 4px; background: #FFF;
+      padding: 4px; border-radius: 999px; border: 1px solid #E2DDD2;
+    }
+    .lang-btn {
+      width: 28px; height: 28px; border-radius: 50%; border: none; background: transparent;
+      font-size: 11px; font-weight: 800; color: #4B5563; cursor: pointer;
+    }
+    .lang-btn.active { background: #133A32; color: #FFF; }
+    .all-langs-panel {
+      display: none; background: #FFF; padding: 8px 12px; border-radius: 16px;
+      border: 1px solid #DFD9CE; margin-bottom: 10px; align-items: center; justify-content: space-between;
+    }
+    .all-langs-panel.open { display: flex; }
+    .btn-offer {
+      width: 100%; background: #C85A28; color: #FFF; border: none;
+      padding: 12px; border-radius: 999px; font-size: 16px; font-weight: 800;
+      cursor: pointer; box-shadow: 0 4px 12px rgba(200,90,40,0.25);
+    }
+    .cats-scroll {
+      display: flex; gap: 8px; overflow-x: auto; padding: 12px 0 4px;
+      scrollbar-width: none;
+    }
+    .cats-scroll::-webkit-scrollbar { display: none; }
+    .cat-pill {
+      flex-shrink: 0; background: #FFF; border: 1px solid #DED9CE; color: #374151;
+      padding: 6px 14px; border-radius: 999px; font-size: 12px; font-weight: 700;
+      cursor: pointer; display: flex; align-items: center; gap: 5px;
+    }
+    .cat-pill.active { background: #133A32; color: #FFF; border-color: #133A32; }
+    .main-area { padding: 16px; }
+    .hero-banners { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 16px; }
+    .dest-card {
+      position: relative; height: 110px; border-radius: 18px; overflow: hidden;
+      cursor: pointer; border: 1px solid #DDD7CA;
+    }
+    .dest-card img { width: 100%; height: 100%; object-fit: cover; }
+    .dest-overlay {
+      position: absolute; inset: 0; background: linear-gradient(to top, rgba(19,58,50,0.9), rgba(0,0,0,0.15));
+      display: flex; flex-direction: column; justify-content: flex-end; padding: 10px; color: #FFF;
+    }
+    .dest-title { font-size: 14px; font-weight: 900; }
+    .dest-sub { font-size: 10px; color: #E6ECE8; }
+    .sage-card {
+      background: #E6ECE8; border: 1px solid #CFDAD3; border-radius: 24px;
+      padding: 18px; margin-bottom: 16px;
+    }
+    .btn-forest {
+      width: 100%; background: #133A32; color: #FFF; border: none; padding: 12px;
+      border-radius: 999px; font-size: 14px; font-weight: 800; cursor: pointer; margin-top: 12px;
+    }
+    .ai-box {
+      background: #FFF; border: 1px solid #E2DDD2; border-radius: 24px;
+      padding: 14px; margin-bottom: 16px;
+    }
+    .ai-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 10px; }
+    .ai-item {
+      background: #F5F3EE; border: 1px solid #E5DFD3; border-radius: 16px;
+      padding: 10px 6px; text-align: center; cursor: pointer;
+    }
+    .filter-box {
+      background: #EFECE6; border: 1px solid #E2DDD2; border-radius: 24px;
+      padding: 14px; margin-bottom: 16px;
+    }
+    .search-input {
+      width: 100%; background: #FFF; border: 1px solid #E2DDD2; border-radius: 999px;
+      padding: 9px 14px; font-size: 13px; margin-bottom: 12px; outline: none;
+    }
+    .filter-label { font-size: 11px; font-weight: 700; color: #4B5563; margin-bottom: 6px; }
+    .filter-row { display: flex; gap: 6px; overflow-x: auto; margin-bottom: 10px; scrollbar-width: none; }
+    .f-btn {
+      flex-shrink: 0; background: #FFF; border: 1px solid #DED9CE; color: #374151;
+      padding: 5px 14px; border-radius: 999px; font-size: 12px; font-weight: 700; cursor: pointer;
+    }
+    .f-btn.active { background: #133A32; color: #FFF; border-color: #133A32; }
+    .offer-card {
+      background: #FFF; border: 1px solid #E4DFD4; border-radius: 22px;
+      padding: 16px; margin-bottom: 12px;
+    }
+    .offer-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; }
+    .offer-price { font-size: 18px; font-weight: 900; color: #C85A28; text-align: left; }
+    .tag {
+      display: inline-block; background: #F5F3EE; border: 1px solid #E2DDD2;
+      padding: 3px 10px; border-radius: 999px; font-size: 11px; font-weight: 700; margin-top: 8px; margin-left: 4px;
+    }
+    .bottom-nav {
+      position: fixed; bottom: 0; left: 0; right: 0; max-width: 480px; margin: 0 auto;
+      background: rgba(245, 243, 238, 0.97); border-top: 1px solid #E2DDD2;
+      display: grid; grid-template-columns: repeat(5, 1fr); padding: 6px 4px; z-index: 40;
+    }
+    .nav-item {
+      background: none; border: none; display: flex; flex-direction: column;
+      align-items: center; gap: 2px; color: #6B7280; font-size: 11px; font-weight: 700; cursor: pointer;
+    }
+    .nav-item.active { color: #133A32; font-weight: 900; }
+    .nav-circle {
+      width: 34px; height: 34px; border-radius: 50%; display: flex;
+      align-items: center; justify-content: center; font-size: 17px;
+    }
+    .nav-item.active .nav-circle { background: #133A32; color: #FFF; }
+    .drawer-bg, .modal-bg {
+      position: fixed; inset: 0; background: rgba(0,0,0,0.55); z-index: 50;
+      display: none; max-width: 480px; margin: 0 auto;
+    }
+    .drawer-bg.open { display: flex; flex-direction: column; justify-content: flex-end; }
+    .modal-bg.open { display: flex; align-items: center; justify-content: center; padding: 16px; }
+    .drawer-sheet {
+      background: #F5F3EE; border-radius: 28px 28px 0 0; max-height: 85vh;
+      overflow-y: auto; padding: 20px; border-top: 1px solid #DFD9CE;
+    }
+    .modal-card {
+      background: #F5F3EE; border-radius: 24px; width: 100%; max-height: 85vh;
+      overflow-y: auto; padding: 20px; border: 1px solid #DFD9CE;
+    }
+    .menu-row {
+      width: 100%; background: #FFF; border: 1px solid #E5DFD3; padding: 12px 16px;
+      border-radius: 16px; font-size: 13px; font-weight: 800; color: #1F2933;
+      display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; cursor: pointer;
+    }
+    .menu-row.forest { background: #133A32; color: #FFF; border-radius: 999px; }
+    .form-field {
+      width: 100%; background: #FFF; border: 1px solid #DED9CE; border-radius: 14px;
+      padding: 10px 12px; font-size: 13px; margin-bottom: 10px; outline: none;
+    }
     .goog-te-banner-frame.skiptranslate { display: none !important; }
-    body { top: 0px !important; }
-    .goog-te-gadget { font-family: inherit !important; color: transparent !important; }
-    .goog-te-gadget .goog-te-combo {
-      background-color: #FFFFFF; color: #133A32; border: 1px solid #D1CEC5;
-      border-radius: 999px; padding: 4px 10px; font-size: 12px; font-weight: 700; outline: none;
-    }
+    body { top: 0 !important; }
   </style>
 </head>
-<body class="max-w-md mx-auto min-h-screen shadow-2xl bg-[#F5F3EE] relative border-x border-[#E5E0D5]">
+<body>
 
-  <!-- تنبيه ضد النصب العلوي -->
-  <div class="bg-[#F2E2D8] text-[#8C3B19] text-xs font-bold px-3 py-2 text-center flex items-center justify-center gap-1.5 border-b border-[#E5CEC0]">
-    <span>🛡️</span>
-    <span>تنبيه ضد النصب: لا تدفع أي مبلغ قبل معاينة السكن وتوقيع العقد.</span>
-  </div>
+<div class="app-shell">
+  <!-- تنبيه النصب -->
+  <div class="alert-bar">🛡️ تنبيه ضد النصب: لا تدفع أي مبلغ قبل معاينة السكن وتوقيع العقد.</div>
 
-  <!-- الهيدر العلوي -->
-  <header class="bg-[#F5F3EE]/95 backdrop-blur sticky top-0 z-40 px-4 pt-3 pb-2 border-b border-[#E6E1D6]">
-    <div class="flex items-center justify-between gap-2 mb-3">
-      <!-- الشعار والاسم -->
-      <div class="flex items-center gap-2">
-        <img src="image_2d49378c.jpg" onerror="this.src='https://placehold.co'" alt="Alicemplea" class="w-11 h-11 rounded-full object-cover border-2 border-[#133A32] shadow-sm" />
-        <div class="flex items-center gap-1.5">
-          <span class="text-xl font-black text-[#1A1A1A] tracking-tight">Alicemplea</span>
-          <span class="text-base">🇪🇸🇫🇷</span>
-        </div>
+  <!-- الهيدر -->
+  <header class="header">
+    <div class="header-top">
+      <div class="brand">
+        <img src="image_2d49378c.jpg" onerror="this.src='image_a55bef46.jpg'" alt="Alicemplea" class="logo-img" />
+        <span class="brand-name">Alicemplea 🇪🇸🇫🇷</span>
       </div>
-
-      <!-- أزرار اللغات الدائرية السريعة -->
-      <div class="flex items-center gap-1 bg-white p-1 rounded-full border border-[#E2DDD2] shadow-xs">
-        <button onclick="setQuickLang('ar', 'rtl', this)" class="lang-pill w-7 h-7 rounded-full text-[11px] font-black bg-[#133A32] text-white transition">AR</button>
-        <button onclick="setQuickLang('es', 'ltr', this)" class="lang-pill w-7 h-7 rounded-full text-[11px] font-bold text-slate-600 hover:bg-slate-100 transition">ES</button>
-        <button onclick="setQuickLang('fr', 'ltr', this)" class="lang-pill w-7 h-7 rounded-full text-[11px] font-bold text-slate-600 hover:bg-slate-100 transition">FR</button>
-        <button onclick="setQuickLang('en', 'ltr', this)" class="lang-pill w-7 h-7 rounded-full text-[11px] font-bold text-slate-600 hover:bg-slate-100 transition">EN</button>
-        <button onclick="toggleAllLangs()" title="جميع لغات العالم" class="w-7 h-7 rounded-full text-xs font-bold bg-[#EBE8E0] text-[#133A32] flex items-center justify-center">🌍</button>
+      <div class="lang-box">
+        <button class="lang-btn active" onclick="setLang('ar','rtl',this)">AR</button>
+        <button class="lang-btn" onclick="setLang('es','ltr',this)">ES</button>
+        <button class="lang-btn" onclick="setLang('fr','ltr',this)">FR</button>
+        <button class="lang-btn" onclick="setLang('en','ltr',this)">EN</button>
+        <button class="lang-btn" style="background:#EBE8E0" onclick="document.getElementById('allLangs').classList.toggle('open')">🌍</button>
       </div>
     </div>
 
-    <!-- قائمة جميع لغات العالم (تظهر عند الضغط على 🌍) -->
-    <div id="allLangsBox" class="hidden mb-2 bg-white p-2 rounded-2xl border border-[#DFD9CE] flex items-center justify-between">
-      <span class="text-xs font-bold text-[#133A32]">اختر أي لغة في العالم:</span>
+    <div id="allLangs" class="all-langs-panel">
+      <span style="font-size:11px;font-weight:800;color:#133A32">🌍 كل لغات العالم:</span>
       <div id="google_translate_element"></div>
     </div>
 
-    <!-- زر + لدي عرض الرئيسي -->
-    <button onclick="openPublishModal()" class="w-full bg-[#C85A28] hover:bg-[#B24D1F] active:scale-[0.99] text-white font-extrabold py-3 rounded-full shadow-md flex items-center justify-center gap-2 text-base transition">
-      <span class="text-xl leading-none">+</span>
-      <span data-t="haveOffer">لدي عرض</span>
-    </button>
+    <button class="btn-offer" onclick="openModal('publish')">+ لدي عرض</button>
 
-    <!-- شريط الأقسام الأفقي السريع -->
-    <div class="flex items-center gap-2 overflow-x-auto no-scrollbar pt-3 pb-1">
-      <button onclick="switchTab('jobs', this)" class="cat-chip shrink-0 bg-white border border-[#DED9CE] text-slate-700 px-3.5 py-1.5 rounded-full text-xs font-bold flex items-center gap-1.5">
-        <span>💼</span><span data-t="jobOffers">عروض العمل</span>
-      </button>
-      <button onclick="switchTab('seekers', this)" class="cat-chip shrink-0 bg-[#133A32] text-white px-3.5 py-1.5 rounded-full text-xs font-bold flex items-center gap-1.5">
-        <span>🔍</span><span data-t="seekers">أبحث عن عمل / السيرة</span>
-      </button>
-      <button onclick="switchTab('housing', this)" class="cat-chip shrink-0 bg-white border border-[#DED9CE] text-slate-700 px-3.5 py-1.5 rounded-full text-xs font-bold flex items-center gap-1.5">
-        <span>🏠</span><span data-t="housing">سكن</span>
-      </button>
-      <button onclick="switchTab('parcels', this)" class="cat-chip shrink-0 bg-white border border-[#DED9CE] text-slate-700 px-3.5 py-1.5 rounded-full text-xs font-bold flex items-center gap-1.5">
-        <span>📦</span><span>توصيل الطرود</span>
-      </button>
-      <button onclick="switchTab('migrants', this)" class="cat-chip shrink-0 bg-white border border-[#DED9CE] text-slate-700 px-3.5 py-1.5 rounded-full text-xs font-bold flex items-center gap-1.5">
-        <span>⚖️</span><span>خدمات المهاجرين</span>
-      </button>
-      <button onclick="switchTab('football', this)" class="cat-chip shrink-0 bg-white border border-[#DED9CE] text-slate-700 px-3.5 py-1.5 rounded-full text-xs font-bold flex items-center gap-1.5">
-        <span>⚽</span><span>الجدول والنتائج</span>
-      </button>
+    <div class="cats-scroll">
+      <button class="cat-pill" onclick="renderView('jobs', this)">💼 عروض العمل</button>
+      <button class="cat-pill active" onclick="renderView('seekers', this)">🔍 أبحث عن عمل / السيرة</button>
+      <button class="cat-pill" onclick="renderView('housing', this)">🏠 سكن</button>
+      <button class="cat-pill" onclick="renderView('parcels', this)">📦 توصيل الطرود</button>
+      <button class="cat-pill" onclick="renderView('migrants', this)">⚖️ خدمات المهاجرين</button>
+      <button class="cat-pill" onclick="renderView('gov', this)">🏛️ عروض SEPE & France Travail</button>
     </div>
   </header>
 
-  <!-- المحتوى الرئيسي الديناميكي -->
-  <main id="mainContent" class="px-4 pt-4 space-y-5"></main>
+  <!-- المحتوى -->
+  <main id="appMain" class="main-area"></main>
 
-  <!-- زر فيسبوك العائم -->
-  <a href="https://facebook.com" target="_blank" rel="noopener" class="fixed bottom-20 left-4 z-30 w-11 h-11 bg-[#1877F2] text-white rounded-full shadow-lg flex items-center justify-center text-xl font-black hover:scale-105 transition">
-    f
-  </a>
-
-  <!-- شريط التنقل السفلي الثابت (5 أيقونات) -->
-  <nav class="fixed bottom-0 left-0 right-0 max-w-md mx-auto bg-[#F5F3EE]/95 backdrop-blur border-t border-[#E2DDD2] z-40 px-2 py-1.5">
-    <div class="grid grid-cols-5 items-center text-center">
-      <button onclick="switchTab('home')" class="nav-btn flex flex-col items-center justify-center py-1 text-slate-500" data-nav="home">
-        <div class="nav-icon w-9 h-9 rounded-full flex items-center justify-center text-lg">🏠</div>
-        <span class="text-[11px] font-bold mt-0.5" data-t="navHome">الرئيسية</span>
-      </button>
-      <button onclick="switchTab('jobs')" class="nav-btn flex flex-col items-center justify-center py-1 text-slate-500" data-nav="jobs">
-        <div class="nav-icon w-9 h-9 rounded-full flex items-center justify-center text-lg">💼</div>
-        <span class="text-[11px] font-bold mt-0.5" data-t="navJobs">الوظائف</span>
-      </button>
-      <button onclick="switchTab('housing')" class="nav-btn flex flex-col items-center justify-center py-1 text-slate-500" data-nav="housing">
-        <div class="nav-icon w-9 h-9 rounded-full flex items-center justify-center text-lg">🔑</div>
-        <span class="text-[11px] font-bold mt-0.5" data-t="navRent">الإيجار</span>
-      </button>
-      <button onclick="switchTab('seekers')" class="nav-btn flex flex-col items-center justify-center py-1 text-[#133A32]" data-nav="seekers">
-        <div class="nav-icon w-9 h-9 rounded-full bg-[#133A32] text-white flex items-center justify-center text-lg">👥</div>
-        <span class="text-[11px] font-extrabold mt-0.5" data-t="navSeekers">الباحثون عن عمل</span>
-      </button>
-      <button onclick="openMoreDrawer()" class="nav-btn flex flex-col items-center justify-center py-1 text-slate-500" data-nav="more">
-        <div class="nav-icon w-9 h-9 rounded-full flex items-center justify-center text-lg">☰</div>
-        <span class="text-[11px] font-bold mt-0.5" data-t="navMore">المزيد</span>
-      </button>
-    </div>
-  </nav>
-
-  <!-- قائمة "كل الأقسام" المنبثقة من الأسفل (كما في Whacka) -->
-  <div id="moreDrawer" class="fixed inset-0 bg-black/50 z-50 hidden flex-col justify-end max-w-md mx-auto">
-    <div class="bg-[#F5F3EE] rounded-t-3xl max-h-[88vh] overflow-y-auto p-5 shadow-2xl border-t border-[#DFD9CE]">
-      <div class="flex items-center justify-between mb-4">
-        <h2 class="text-xl font-black text-[#1A1A1A]">كل الأقسام</h2>
-        <button onclick="closeMoreDrawer()" class="w-9 h-9 rounded-full bg-white border border-[#DED9CE] flex items-center justify-center font-bold text-slate-600">✕</button>
-      </div>
-
-      <div class="space-y-2.5 text-sm font-bold">
-        <button onclick="closeMoreDrawer(); switchTab('seekers')" class="w-full bg-[#133A32] text-white px-4 py-3.5 rounded-full flex items-center justify-between">
-          <span>أبحث عن عمل / السيرة</span>
-          <span>👥</span>
-        </button>
-        <button onclick="closeMoreDrawer(); switchTab('housing')" class="w-full bg-transparent hover:bg-white px-4 py-3 rounded-2xl flex items-center justify-between text-slate-800">
-          <span>أبحث عن سكن</span>
-          <span>🔍</span>
-        </button>
-        <button onclick="closeMoreDrawer(); openAiAssistant()" class="w-full bg-[#E6ECE8] border border-[#C6D5CC] px-4 py-3 rounded-2xl flex items-center justify-between text-[#133A32]">
-          <span>🤖 المساعد الذكي AI (مقابلات وإدارة)</span>
-          <span class="bg-[#133A32] text-white text-[10px] px-2 py-0.5 rounded-full">جديد</span>
-        </button>
-        <button onclick="closeMoreDrawer(); openCvBuilder()" class="w-full hover:bg-white px-4 py-3 rounded-2xl flex items-center justify-between text-slate-800">
+  <!-- شريط التنقل السفلي -->
+  <nav class="bottom-nav">
+    <button class="nav-item" data-tab="home" onclick="renderView('home')">
+      <div class="nav-circle">🏠</div><span>الرئيسية</span>
+    </button>
