@@ -11,23 +11,23 @@
     .app { max-width: 480px; margin: 0 auto; min-height: 100vh; background: #F5F3EE; padding-bottom: 90px; }
     .alert { background: #F2E2D8; color: #8C3B19; font-size: 11px; font-weight: 700; padding: 8px; text-align: center; }
     .top { background: #F5F3EE; padding: 12px 15px; border-bottom: 1px solid #E5E0D5; position: sticky; top: 0; z-index: 30; }
-    .row-between { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+    .row { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
     .logo { width: 46px; height: 46px; border-radius: 50%; object-fit: cover; border: 2px solid #133A32; }
     .langs { display: flex; gap: 4px; background: #FFF; padding: 4px; border-radius: 99px; border: 1px solid #DED9CE; }
-    .l-btn { width: 28px; height: 28px; border-radius: 50%; border: none; background: none; font-size: 11px; font-weight: 800; cursor: pointer; }
+    .l-btn { width: 30px; height: 30px; border-radius: 50%; border: none; background: none; font-size: 11px; font-weight: 800; cursor: pointer; color: #374151; }
     .l-btn.on { background: #133A32; color: #FFF; }
-    .btn-orange { width: 100%; background: #C85A28; color: #FFF; border: none; padding: 12px; border-radius: 99px; font-size: 16px; font-weight: 800; margin-top: 10px; cursor: pointer; }
+    .btn-orange { display: block; width: 100%; background: #C85A28; color: #FFF; text-align: center; text-decoration: none; padding: 12px; border-radius: 99px; font-size: 16px; font-weight: 800; margin-top: 10px; }
     .chips { display: flex; gap: 8px; overflow-x: auto; padding-top: 10px; }
     .chip { flex-shrink: 0; background: #FFF; border: 1px solid #DED9CE; padding: 6px 14px; border-radius: 99px; font-size: 12px; font-weight: 700; text-decoration: none; color: #1F2933; }
     .chip.on { background: #133A32; color: #FFF; }
     .sec { padding: 15px; }
-    .hero-eu { position: relative; height: 150px; border-radius: 22px; overflow: hidden; margin-bottom: 14px; }
+    .hero-eu { position: relative; height: 150px; border-radius: 22px; overflow: hidden; margin-bottom: 12px; }
     .hero-eu img, .grid-2 img { width: 100%; height: 100%; object-fit: cover; }
     .overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(19,58,50,0.92), rgba(0,0,0,0.15)); color: #FFF; padding: 12px; display: flex; flex-direction: column; justify-content: flex-end; }
     .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 14px; }
-    .card-img { position: relative; height: 115px; border-radius: 18px; overflow: hidden; }
+    .card-img { position: relative; height: 110px; border-radius: 18px; overflow: hidden; display: block; }
     .box-sage { background: #E6ECE8; border: 1px solid #CFDAD3; border-radius: 22px; padding: 16px; margin-bottom: 14px; }
-    .btn-green { display: block; width: 100%; text-align: center; background: #133A32; color: #FFF; padding: 11px; border-radius: 99px; font-size: 14px; font-weight: 800; text-decoration: none; margin-top: 10px; border: none; cursor: pointer; }
+    .btn-green { display: block; width: 100%; text-align: center; background: #133A32; color: #FFF; padding: 11px; border-radius: 99px; font-size: 14px; font-weight: 800; text-decoration: none; margin-top: 10px; }
     .box-white { background: #FFF; border: 1px solid #E2DDD2; border-radius: 22px; padding: 15px; margin-bottom: 12px; }
     .ai-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 10px; text-align: center; }
     .ai-btn { background: #F5F3EE; border: 1px solid #E5DFD3; border-radius: 14px; padding: 10px 4px; font-size: 11px; font-weight: 800; color: #133A32; text-decoration: none; display: block; }
@@ -36,92 +36,81 @@
     .b-item { text-decoration: none; color: #4B5563; font-size: 11px; font-weight: 700; }
     .b-icon { width: 32px; height: 32px; margin: 0 auto 2px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 16px; }
     .b-item.on .b-icon { background: #133A32; color: #FFF; }
-    .goog-te-banner-frame.skiptranslate { display: none !important; }
-    body { top: 0 !important; }
   </style>
 </head>
 <body>
 <div class="app">
-  <div class="alert">🛡️ تنبيه ضد النصب: لا تدفع أي مبلغ قبل معاينة السكن وتوقيع العقد.</div>
+  <div id="t_alert" class="alert">🛡️ تنبيه ضد النصب: لا تدفع أي مبلغ قبل معاينة السكن وتوقيع العقد.</div>
 
   <div class="top">
-    <div class="row-between">
+    <div class="row">
       <div style="display:flex;align-items:center;gap:8px">
         <img src="image_a55bef46.jpg" class="logo" alt="Logo" />
         <strong style="font-size:20px">Alicemplea 🇪🇸🇫🇷</strong>
       </div>
       <div class="langs">
-        <button class="l-btn on" onclick="setD('ar','rtl',this)">AR</button>
-        <button class="l-btn" onclick="setD('es','ltr',this)">ES</button>
-        <button class="l-btn" onclick="setD('fr','ltr',this)">FR</button>
-        <button class="l-btn" onclick="setD('en','ltr',this)">EN</button>
+        <button class="l-btn on" onclick="chLang('ar',this)">AR</button>
+        <button class="l-btn" onclick="chLang('es',this)">ES</button>
+        <button class="l-btn" onclick="chLang('fr',this)">FR</button>
+        <button class="l-btn" onclick="chLang('en',this)">EN</button>
+        <a href="https://translate.goog" target="_blank" class="l-btn" style="display:flex;align-items:center;justify-content:center;text-decoration:none;background:#EBE8E0" title="كل لغات العالم">🌍</a>
       </div>
     </div>
 
-    <div style="margin-top:8px;background:#FFF;padding:6px 12px;border-radius:99px;border:1px solid #DED9CE;display:flex;justify-content:space-between;align-items:center">
-      <span style="font-size:11px;font-weight:800;color:#133A32">🌍 كل لغات العالم:</span>
-      <div id="google_translate_element"></div>
-    </div>
-
-    <a href="mailto:alicemplea.eu@://gmail.com عرض جديد في Alicemplea" style="display:block;text-align:center;text-decoration:none" class="btn-orange">+ لدي عرض</a>
+    <a id="t_offer" href="mailto:alicemplea.eu@://gmail.com عرض جديد" class="btn-orange">+ لدي عرض</a>
 
     <div class="chips">
-      <a href="#jobs" class="chip">💼 عروض العمل</a>
-      <a href="#seekers" class="chip on">🔍 أبحث عن عمل / السيرة</a>
-      <a href="#housing" class="chip">🏠 سكن</a>
+      <a id="t_c1" href="#jobs" class="chip">💼 عروض العمل</a>
+      <a id="t_c2" href="#seekers" class="chip on">🔍 أبحث عن عمل / السيرة</a>
+      <a id="t_c3" href="#housing" class="chip">🏠 سكن</a>
       <a href="#gov" class="chip">🏛️ SEPE & France Travail</a>
-      <a href="#services" class="chip">⚖️ الخدمات والباقات</a>
+      <a id="t_c4" href="#services" class="chip">⚖️ الخدمات والباقات</a>
     </div>
   </div>
 
   <div class="sec">
-    <!-- الصورة 1: الاتحاد الأوروبي -->
     <div class="hero-eu">
       <img src="image_14b87c6a.jpg" alt="Europe" />
       <div class="overlay">
-        <span style="font-size:11px;color:#FCD34D;font-weight:800">🇪🇺 المنصة الأوروبية الشاملة</span>
-        <strong style="font-size:16px">العمل والسكن والخدمات في إسبانيا وفرنسا</strong>
+        <span id="t_b1" style="font-size:11px;color:#FCD34D;font-weight:800">🇪🇺 المنصة الأوروبية الشاملة</span>
+        <strong id="t_b2" style="font-size:15px">العمل والسكن والخدمات في إسبانيا وفرنسا</strong>
       </div>
     </div>
 
-    <!-- الصورتان 2 و 3: إسبانيا وفرنسا -->
     <div class="grid-2">
       <a href="#jobs" class="card-img">
         <img src="image_2d49378c.jpg" alt="Spain" />
-        <div class="overlay"><strong>🇪🇸 إسبانيا</strong><span style="font-size:10px">أليكانتي ومدريد</span></div>
+        <div class="overlay"><strong id="t_es">🇪🇸 إسبانيا</strong><span style="font-size:10px">Alicante • Madrid</span></div>
       </a>
       <a href="#housing" class="card-img">
         <img src="image_95a374c6.jpg" alt="France" />
-        <div class="overlay"><strong>🇫🇷 فرنسا</strong><span style="font-size:10px">باريس ومرسيليا</span></div>
+        <div class="overlay"><strong id="t_fr">🇫🇷 فرنسا</strong><span style="font-size:10px">Paris • Marseille</span></div>
       </a>
     </div>
 
-    <!-- قسم الباحثين عن عمل ومنشئ السيرة الذاتية -->
     <div id="seekers" class="box-sage">
-      <span style="font-size:11px;font-weight:800;color:#133A32">✨ منشئ السيرة الذاتية الأوروبية</span>
-      <h2 style="font-size:18px;font-weight:900;margin:4px 0">منشئ السيرة الذاتية بالإسبانية والفرنسية</h2>
-      <p style="font-size:12px;color:#4B5563">اكتب بياناتك بأي لغة وسيصيغها التطبيق بصيغة Europass المهنية (5€ / 8€).</p>
-      <a href="mailto:alicemplea.eu@://gmail.com تصميم سيرة ذاتية CV" class="btn-green">✨ أنشئ سيرتي الذاتية الآن</a>
+      <span id="t_cv1" style="font-size:11px;font-weight:800;color:#133A32">✨ منشئ السيرة الذاتية الأوروبية</span>
+      <h2 id="t_cv2" style="font-size:18px;font-weight:900;margin:4px 0">منشئ السيرة الذاتية بالإسبانية والفرنسية</h2>
+      <p id="t_cv3" style="font-size:12px;color:#4B5563">اكتب بياناتك بأي لغة وسيصيغها التطبيق بصيغة Europass المهنية (5€ / 8€).</p>
+      <a id="t_cv4" href="mailto:alicemplea.eu@://gmail.com تصميم سيرة ذاتية CV" class="btn-green">✨ أنشئ سيرتي الذاتية الآن</a>
     </div>
 
-    <!-- المساعد الذكي AI -->
     <div id="ai" class="box-white">
-      <div class="row-between">
-        <strong style="font-size:13px;color:#133A32">🤖 المساعد الذكي (AI Assistant)</strong>
-        <span style="background:#E6ECE8;color:#133A32;font-size:10px;font-weight:800;padding:2px 8px;border-radius:99px">جديد</span>
+      <div class="row">
+        <strong id="t_ai" style="font-size:13px;color:#133A32">🤖 المساعد الذكي (AI Assistant)</strong>
+        <span style="background:#E6ECE8;color:#133A32;font-size:10px;font-weight:800;padding:2px 8px;border-radius:99px">AI</span>
       </div>
       <div class="ai-3">
-        <a href="mailto:alicemplea.eu@://gmail.com المقابلات AI" class="ai-btn">🎙️<br>محاكي المقابلات</a>
-        <a href="mailto:alicemplea.eu@://gmail.com الإداري AI" class="ai-btn">🏛️<br>المرشد الإداري</a>
-        <a href="mailto:alicemplea.eu@://gmail.com المسميات المهنية" class="ai-btn">🎯<br>معادل المهن</a>
+        <a id="t_a1" href="mailto:alicemplea.eu@://gmail.com المقابلات AI" class="ai-btn">🎙️<br>محاكي المقابلات</a>
+        <a id="t_a2" href="mailto:alicemplea.eu@://gmail.com الإداري AI" class="ai-btn">🏛️<br>المرشد الإداري</a>
+        <a id="t_a3" href="mailto:alicemplea.eu@://gmail.com المسميات" class="ai-btn">🎯<br>معادل المهن</a>
       </div>
     </div>
 
-    <!-- العروض النشطة -->
     <h3 id="jobs" style="font-size:16px;font-weight:900;margin:14px 0 8px">💼 أحدث عروض العمل والسكن</h3>
 
     <div class="box-white">
-      <div class="row-between">
+      <div class="row">
         <strong style="font-size:15px">سائق شاحنة وتوزيع بضائع (رخصة C)</strong>
         <strong style="color:#C85A28;font-size:16px">1,650 €</strong>
       </div>
@@ -130,7 +119,7 @@
     </div>
 
     <div id="housing" class="box-white">
-      <div class="row-between">
+      <div class="row">
         <strong style="font-size:15px">شقة مفروشة للكراء المؤقت واليومي في مارسيليا</strong>
         <strong style="color:#C85A28;font-size:16px">50 € / يوم</strong>
       </div>
@@ -138,18 +127,23 @@
       <span class="tag">شقة كاملة</span> <span class="tag">مفروش</span>
     </div>
 
-    <!-- العروض الحكومية الرسمية -->
     <div id="gov" class="box-white" style="border-color:#133A32">
-      <span style="background:#133A32;color:#FFF;font-size:10px;padding:2px 8px;border-radius:99px">مصدر حكومي رسمي ✓</span>
-      <h4 style="font-size:15px;font-weight:900;margin-top:6px">بوابات التوظيف الرسمية (SEPE & France Travail)</h4>
+      <span style="background:#133A32;color:#FFF;font-size:10px;padding:2px 8px;border-radius:99px">SEPE & France Travail ✓</span>
+      <h4 style="font-size:15px;font-weight:900;margin-top:6px">بوابات التوظيف الرسمية المعتمدة</h4>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px">
-        <a href="https://empleate.gob.es" target="_blank" class="btn-green" style="margin:0;font-size:12px">🇪🇸 بوابة SEPE ↗</a>
+        <a href="https://empleate.gob.es" target="_blank" class="btn-green" style="margin:0;font-size:12px">🇪🇸 SEPE / Empléate ↗</a>
         <a href="https://francetravail.fr" target="_blank" class="btn-green" style="margin:0;font-size:12px">🇫🇷 France Travail ↗</a>
       </div>
     </div>
 
-    <!-- الباقات والخدمات -->
     <div id="services" style="background:#EBE8E0;border-radius:22px;padding:16px;text-align:center;margin-top:14px">
-      <strong style="font-size:14px">⭐ باقات الإعلان الموثق والخدمات</strong>
+      <strong id="t_p1" style="font-size:14px">⭐ باقات الإعلان الموثق والخدمات</strong>
       <p style="font-size:12px;margin-top:6px;line-height:1.7">
-        • تمييز إعلان في الأعلى: <strong>5€</strong><br>
+        • تمييز إعلان: <strong>5€</strong> | باقة التجار: <strong>15€/شهر</strong> | المحامون: <strong>25€/شهر</strong>
+      </p>
+      <a id="t_p2" href="mailto:alicemplea.eu@gmail.com" class="btn-green">✉️ التواصل مع الإدارة (alicemplea.eu@gmail.com)</a>
+      <p style="font-size:10px;color:#6B7280;margin-top:10px">ALICEMPLEA © 2026 — CHERIF CHEKLAL | Aviso Legal & GDPR</p>
+    </div>
+  </div>
+
+  <div class="b-nav">
