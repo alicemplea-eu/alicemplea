@@ -3,55 +3,76 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Alicemplea | بوابة العمل والسكن والخدمات في إسبانيا وفرنسا وأوروبا</title>
+  <title>Alicemplea | إسبانيا وفرنسا وأوروبا</title>
   <link href="https://googleapis.com" rel="stylesheet">
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Cairo', sans-serif; }
-    body { background: #E6E1D6; color: #1F2933; }
-    .app { max-width: 480px; margin: 0 auto; min-height: 100vh; background: #F5F3EE; padding-bottom: 90px; position: relative; box-shadow: 0 0 30px rgba(0,0,0,0.08); }
-    .alert { background: #F2E2D8; color: #8C3B19; font-size: 11px; font-weight: 700; padding: 8px 12px; text-align: center; border-bottom: 1px solid #E5CEC0; }
-    .top { background: rgba(245,243,238,0.97); padding: 12px 15px 10px; border-bottom: 1px solid #E5E0D5; position: sticky; top: 0; z-index: 35; }
+    body {
+      min-height: 100vh; color: #1F2933;
+      background-image: url('image_14b87c6a.jpg');
+      background-size: cover; background-position: center; background-attachment: fixed;
+      transition: background-image 0.4s ease-in-out;
+    }
+    .bg-tint {
+      min-height: 100vh; width: 100%;
+      background: linear-gradient(to bottom, rgba(19, 58, 50, 0.45), rgba(245, 243, 238, 0.72));
+      padding-bottom: 95px;
+    }
+    .app { max-width: 520px; margin: 0 auto; min-height: 100vh; }
+    .alert { background: rgba(242, 226, 216, 0.96); color: #8C3B19; font-size: 11px; font-weight: 800; padding: 8px; text-align: center; }
+    .top {
+      background: rgba(245, 243, 238, 0.92); backdrop-filter: blur(10px);
+      padding: 12px 15px 10px; border-bottom: 1px solid rgba(229,224,213,0.8);
+      position: sticky; top: 0; z-index: 35;
+    }
     .row { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
     .logo { width: 46px; height: 46px; border-radius: 50%; object-fit: cover; border: 2px solid #133A32; }
     .langs { display: flex; gap: 4px; background: #FFF; padding: 4px; border-radius: 99px; border: 1px solid #DED9CE; }
-    .l-btn { width: 29px; height: 29px; border-radius: 50%; border: none; background: none; font-size: 11px; font-weight: 800; cursor: pointer; color: #374151; }
+    .l-btn { width: 28px; height: 28px; border-radius: 50%; border: none; background: none; font-size: 11px; font-weight: 800; cursor: pointer; color: #374151; }
     .l-btn.on { background: #133A32; color: #FFF; }
     .world-bar { display: none; margin-top: 8px; background: #FFF; padding: 6px 12px; border-radius: 16px; border: 1px solid #DED9CE; align-items: center; justify-content: space-between; }
     .world-bar.show { display: flex; }
-    .btn-orange { width: 100%; background: #C85A28; color: #FFF; border: none; padding: 12px; border-radius: 99px; font-size: 16px; font-weight: 800; margin-top: 10px; cursor: pointer; box-shadow: 0 4px 12px rgba(200,90,40,0.25); }
+    .btn-orange { width: 100%; background: #C85A28; color: #FFF; border: none; padding: 12px; border-radius: 99px; font-size: 16px; font-weight: 800; margin-top: 10px; cursor: pointer; box-shadow: 0 4px 14px rgba(200,90,40,0.35); }
+    .dest-bar { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 10px; }
+    .d-btn { background: rgba(255,255,255,0.9); border: 1px solid #DED9CE; padding: 8px 4px; border-radius: 99px; font-size: 12px; font-weight: 800; cursor: pointer; color: #133A32; text-align: center; }
+    .d-btn.on { background: #133A32; color: #FFF; border-color: #133A32; }
     .chips { display: flex; gap: 8px; overflow-x: auto; padding-top: 10px; scrollbar-width: none; }
     .chips::-webkit-scrollbar { display: none; }
-    .chip { flex-shrink: 0; background: #FFF; border: 1px solid #DED9CE; padding: 6px 14px; border-radius: 99px; font-size: 12px; font-weight: 700; cursor: pointer; color: #1F2933; }
-    .chip.on { background: #133A32; color: #FFF; border-color: #133A32; }
-    .hero-banner { position: relative; height: 210px; margin: 14px; border-radius: 24px; overflow: hidden; box-shadow: 0 8px 20px rgba(0,0,0,0.12); }
-    .hero-banner img { width: 100%; height: 100%; object-fit: cover; transition: 0.4s; }
-    .hero-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(19,58,50,0.95) 10%, rgba(19,58,50,0.35) 60%, rgba(0,0,0,0.2)); color: #FFF; padding: 16px; display: flex; flex-direction: column; justify-content: space-between; }
-    .dest-tabs { display: flex; gap: 6px; }
-    .d-tab { background: rgba(255,255,255,0.2); backdrop-filter: blur(6px); border: 1px solid rgba(255,255,255,0.4); color: #FFF; padding: 5px 12px; border-radius: 99px; font-size: 12px; font-weight: 800; cursor: pointer; }
-    .d-tab.on { background: #C85A28; border-color: #C85A28; }
-    .sec { padding: 0 15px 15px; }
-    .box-sage { background: #E6ECE8; border: 1px solid #CFDAD3; border-radius: 22px; padding: 16px; margin-bottom: 14px; }
-    .box-white { background: #FFF; border: 1px solid #E2DDD2; border-radius: 22px; padding: 15px; margin-bottom: 12px; }
-    .box-beige { background: #EFECE6; border: 1px solid #E2DDD2; border-radius: 22px; padding: 14px; margin-bottom: 14px; }
+    .chip { flex-shrink: 0; background: rgba(255,255,255,0.95); border: 1px solid #DED9CE; padding: 6px 14px; border-radius: 99px; font-size: 12px; font-weight: 700; cursor: pointer; color: #1F2933; }
+    .chip.on { background: #C85A28; color: #FFF; border-color: #C85A28; }
+    .sec { padding: 15px; }
+    .glass {
+      background: rgba(245, 243, 238, 0.92); backdrop-filter: blur(12px);
+      border: 1px solid rgba(255,255,255,0.7); border-radius: 24px;
+      padding: 16px; margin-bottom: 14px; box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+    }
+    .glass-sage {
+      background: rgba(230, 236, 232, 0.94); backdrop-filter: blur(12px);
+      border: 1px solid #CFDAD3; border-radius: 24px; padding: 16px; margin-bottom: 14px;
+    }
     .btn-green { width: 100%; background: #133A32; color: #FFF; padding: 11px; border-radius: 99px; font-size: 14px; font-weight: 800; border: none; cursor: pointer; margin-top: 10px; display: block; text-align: center; text-decoration: none; }
     .ai-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 10px; text-align: center; }
-    .ai-btn { background: #F5F3EE; border: 1px solid #E5DFD3; border-radius: 14px; padding: 10px 4px; font-size: 11px; font-weight: 800; color: #133A32; cursor: pointer; }
-    .tag { display: inline-block; background: #F5F3EE; border: 1px solid #E2DDD2; padding: 3px 10px; border-radius: 99px; font-size: 11px; font-weight: 700; margin-top: 8px; margin-left: 4px; }
-    .b-nav { position: fixed; bottom: 0; left: 0; right: 0; max-width: 480px; margin: 0 auto; background: rgba(245,243,238,0.98); border-top: 1px solid #E2DDD2; display: grid; grid-template-columns: repeat(5, 1fr); padding: 6px 0; text-align: center; z-index: 35; }
+    .ai-btn { background: #FFF; border: 1px solid #E5DFD3; border-radius: 14px; padding: 10px 4px; font-size: 11px; font-weight: 800; color: #133A32; cursor: pointer; }
+    .inp { width: 100%; background: #FFF; border: 1px solid #DED9CE; border-radius: 99px; padding: 10px 14px; font-size: 13px; margin-bottom: 10px; outline: none; }
+    .f-row { display: flex; gap: 6px; overflow-x: auto; margin-bottom: 10px; scrollbar-width: none; }
+    .f-pill { flex-shrink: 0; background: #FFF; border: 1px solid #DED9CE; padding: 5px 14px; border-radius: 99px; font-size: 12px; font-weight: 700; cursor: pointer; }
+    .f-pill.on { background: #133A32; color: #FFF; border-color: #133A32; }
+    .tag { display: inline-block; background: #FFF; border: 1px solid #E2DDD2; padding: 3px 10px; border-radius: 99px; font-size: 11px; font-weight: 700; margin-top: 6px; margin-left: 4px; }
+    .b-nav { position: fixed; bottom: 0; left: 0; right: 0; max-width: 520px; margin: 0 auto; background: rgba(245,243,238,0.97); backdrop-filter: blur(10px); border-top: 1px solid #E2DDD2; display: grid; grid-template-columns: repeat(5, 1fr); padding: 6px 0; text-align: center; z-index: 35; }
     .b-item { background: none; border: none; color: #4B5563; font-size: 11px; font-weight: 700; cursor: pointer; }
     .b-item.on { color: #133A32; font-weight: 900; }
     .b-icon { width: 32px; height: 32px; margin: 0 auto 2px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 16px; }
     .b-item.on .b-icon { background: #133A32; color: #FFF; }
-    .overlay-bg { position: fixed; inset: 0; background: rgba(0,0,0,0.55); z-index: 50; display: none; max-width: 480px; margin: 0 auto; }
+    .overlay-bg { position: fixed; inset: 0; background: rgba(0,0,0,0.55); z-index: 50; display: none; max-width: 520px; margin: 0 auto; }
     .overlay-bg.open { display: flex; flex-direction: column; justify-content: flex-end; }
     .sheet { background: #F5F3EE; border-radius: 28px 28px 0 0; max-height: 86vh; overflow-y: auto; padding: 20px; border-top: 1px solid #DFD9CE; }
     .m-row { width: 100%; background: #FFF; border: 1px solid #E5DFD3; padding: 12px 15px; border-radius: 16px; font-size: 13px; font-weight: 800; color: #1F2933; display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; cursor: pointer; }
-    .inp { width: 100%; background: #FFF; border: 1px solid #DED9CE; border-radius: 14px; padding: 10px 12px; font-size: 13px; margin-bottom: 10px; outline: none; }
     .goog-te-banner-frame.skiptranslate { display: none !important; }
     body { top: 0 !important; }
   </style>
 </head>
 <body>
+<div class="bg-tint">
 <div class="app">
   <div id="t_alert" class="alert">🛡️ تنبيه ضد النصب: لا تدفع أي مبلغ قبل معاينة السكن وتوقيع العقد.</div>
 
@@ -59,7 +80,10 @@
     <div class="row">
       <div style="display:flex;align-items:center;gap:8px">
         <img src="image_a55bef46.jpg" class="logo" alt="Alicemplea Logo" />
-        <strong style="font-size:20px">Alicemplea 🇪🇸🇫🇷</strong>
+        <div>
+          <strong style="font-size:20px;display:block;line-height:1">Alicemplea 🇪🇸🇫🇷</strong>
+          <span id="destLabel" style="font-size:11px;font-weight:800;color:#133A32">🇪🇺 الاتحاد الأوروبي الشامل</span>
+        </div>
       </div>
       <div class="langs">
         <button class="l-btn on" onclick="chLang('ar',this)">AR</button>
@@ -71,11 +95,18 @@
     </div>
 
     <div id="wBar" class="world-bar">
-      <span style="font-size:11px;font-weight:800;color:#133A32">🌍 اختر أي لغة في العالم:</span>
+      <span style="font-size:11px;font-weight:800;color:#133A32">🌍 كل لغات العالم:</span>
       <div id="google_translate_element"></div>
     </div>
 
     <button id="t_offer" class="btn-orange" onclick="openSheet('publish')">+ لدي عرض</button>
+
+    <!-- أزرار تغيير خلفية الموقع الكاملة (أوروبا / إسبانيا / فرنسا) -->
+    <div class="dest-bar">
+      <button class="d-btn on" onclick="setBg('EU',this)">🇪🇺 أوروبا</button>
+      <button class="d-btn" onclick="setBg('ES',this)">🇪🇸 إسبانيا</button>
+      <button class="d-btn" onclick="setBg('FR',this)">🇫🇷 فرنسا</button>
+    </div>
 
     <div class="chips">
       <button id="t_c1" class="chip" onclick="showTab('jobs',this)">💼 عروض العمل</button>
@@ -86,24 +117,8 @@
     </div>
   </div>
 
-  <!-- الخلفية البانورامية المتغيرة ديناميكياً (أوروبا / إسبانيا / فرنسا) -->
-  <div class="hero-banner">
-    <img id="heroImg" src="image_14b87c6a.jpg" alt="Europe Banner" />
-    <div class="hero-overlay">
-      <div class="dest-tabs">
-        <button class="d-tab on" onclick="setDest('EU',this)">🇪🇺 أوروبا</button>
-        <button class="d-tab" onclick="setDest('ES',this)">🇪🇸 إسبانيا</button>
-        <button class="d-tab" onclick="setDest('FR',this)">🇫🇷 فرنسا</button>
-      </div>
-      <div>
-        <span id="heroBadge" style="font-size:11px;color:#FCD34D;font-weight:800">🇪🇺 الاتحاد الأوروبي الشامل</span>
-        <h2 id="heroTitle" style="font-size:17px;font-weight:900;margin-top:2px">العمل والسكن والخدمات في إسبانيا وفرنسا</h2>
-      </div>
-    </div>
-  </div>
-
   <main id="mainBody" class="sec"></main>
-  <!-- شريط التنقل السفلي الثابت (5 أيقونات) -->
+
   <nav class="b-nav">
     <button id="t_n1" class="b-item" data-v="home" onclick="showTab('home')"><div class="b-icon">🏠</div>الرئيسية</button>
     <button id="t_n2" class="b-item" data-v="jobs" onclick="showTab('jobs')"><div class="b-icon">💼</div>الوظائف</button>
@@ -112,7 +127,6 @@
     <button id="t_n5" class="b-item" data-v="more" onclick="document.getElementById('moreBox').classList.add('open')"><div class="b-icon">☰</div>المزيد</button>
   </nav>
 
-  <!-- قائمة كل الأقسام المنبثقة (المزيد) -->
   <div id="moreBox" class="overlay-bg" onclick="if(event.target===this)this.classList.remove('open')">
     <div class="sheet">
       <div class="row" style="margin-bottom:14px">
@@ -124,8 +138,9 @@
       <button class="m-row" style="background:#E6ECE8" onclick="closeMore();openSheet('ai')"><span>🤖 المساعد الذكي AI (مقابلات وإدارة)</span><span>جديد</span></button>
       <button class="m-row" onclick="closeMore();openSheet('cv')"><span>✨ منشئ السيرة الذاتية الأوروبية</span><span>5€ / 8€</span></button>
       <button class="m-row" onclick="closeMore();showTab('gov')"><span>🏛️ عروض رسمية (SEPE & France Travail)</span><span>✓</span></button>
-      <button class="m-row" onclick="closeMore();showTab('services')"><span>⚖️ خدمات المهاجرين والمحامين</span><span>25€</span></button>
-      <button class="m-row" style="color:#C85A28" onclick="closeMore();openSheet('promo')"><span>⭐ تمييز الإعلان (5 يورو) وباقة التجار (15€)</span><span>★</span></button>
+      <button class="m-row" onclick="closeMore();openSheet('langLearn')"><span>🗣️ قسم تعلم اللغات الأوروبية بالنطق</span><span>EU</span></button>
+      <button class="m-row" onclick="closeMore();openSheet('community')"><span>🤝 بوابة المجتمع الأوروبي (خدمات، سفر، مستعمل)</span><span>جديد</span></button>
+      <button class="m-row" style="color:#C85A28" onclick="closeMore();openSheet('promo')"><span>⭐ تمييز الإعلان (5€) والتجار (15€) والمحامين (25€)</span><span>★</span></button>
       <button class="m-row" onclick="closeMore();openSheet('admin')"><span>🛡️ لوحة تحكم المالك</span><span>⚙️</span></button>
       <p style="text-align:center;font-size:11px;color:#6B7280;margin-top:12px">
         <a href="#" onclick="openSheet('legal');return false;" style="color:#133A32;font-weight:800">Aviso Legal & GDPR</a> • CHERIF CHEKLAL
@@ -133,7 +148,6 @@
     </div>
   </div>
 
-  <!-- نافذة النماذج التفاعلية -->
   <div id="sheetBox" class="overlay-bg" onclick="if(event.target===this)this.classList.remove('open')">
     <div class="sheet">
       <button onclick="document.getElementById('sheetBox').classList.remove('open')" style="width:32px;height:32px;border-radius:50%;border:1px solid #DED9CE;background:#FFF;font-weight:900;margin-bottom:8px">✕</button>
@@ -141,41 +155,79 @@
     </div>
   </div>
 </div>
+</div>
 <script>
   function googleTranslateElementInit() {
     new google.translate.TranslateElement({ pageLanguage: 'ar', autoDisplay: false }, 'google_translate_element');
   }
 
-  let activeDest = 'EU';
-  let activeTab = 'seekers';
+  let curDest = 'EU';
+  let curTab = 'seekers';
+  let curNie = 'ALL';
+  let curSearch = '';
 
-  const destData = {
-    EU: { img: 'image_14b87c6a.jpg', badge: '🇪🇺 الاتحاد الأوروبي الشامل', title: 'العمل والسكن والخدمات في إسبانيا وفرنسا' },
-    ES: { img: 'image_2d49378c.jpg', badge: '🇪🇸 إسبانيا (أليكانتي، مدريد، برشلونة)', title: 'عروض العمل والسكن والخدمات في إسبانيا' },
-    FR: { img: 'image_95a374c6.jpg', badge: '🇫🇷 فرنسا (باريس، ليون، مرسيليا)', title: 'عروض العمل والسكن والخدمات في فرنسا' }
+  const bgMap = {
+    EU: { img: 'image_14b87c6a.jpg', label: '🇪🇺 الاتحاد الأوروبي الشامل' },
+    ES: { img: 'image_2d49378c.jpg', label: '🇪🇸 إسبانيا (أليكانتي، مدريد، برشلونة)' },
+    FR: { img: 'image_95a374c6.jpg', label: '🇫🇷 فرنسا (باريس، ليون، مرسيليا)' }
   };
 
-  const offersList = [
+  const seekersData = [
+    { dest: 'ES', name: 'يوسف المنصوري — سائق شاحنات ورافعة (Carretillero)', city: 'أليكانتي · Alicante', nie: 'لديه NIE', exp: 'خبرة 6 سنوات، رخصة C+E سارية.' },
+    { dest: 'ES', name: 'سارة بن علي — طباخة ومساعدة مطبخ وحلويات', city: 'مدريد · Madrid', nie: 'بدون NIE', exp: 'إجادة المطبخ الإسباني والمتوسطي.' },
+    { dest: 'FR', name: 'كريم بوزيد — كهربائي بناء وصيانة عامة', city: 'باريس · Paris', nie: 'لديه NIE', exp: 'خبرة 8 سنوات في التمديدات السكنية والتجارية.' },
+    { dest: 'FR', name: 'نادية العلمي — مربية أطفال ورعاية مسنين', city: 'مرسيليا · Marseille', nie: 'بدون NIE', exp: 'تتحدث العربية والفرنسية بطلاقة.' }
+  ];
+
+  const offersData = [
     { dest: 'ES', type: 'jobs', title: 'سائق شاحنة وتوزيع بضائع (رخصة C)', city: 'Alicante · أليكانتي', price: '1,650 €', per: 'شهرياً', tags: ['عقد دائم', 'مُحدّث ✓'] },
     { dest: 'FR', type: 'jobs', title: 'مساعد طباخ ونادل في مطعم بباريس', city: 'Paris · باريس', price: '1,800 €', per: 'شهرياً', tags: ['CDI', 'سكن متوفر'] },
     { dest: 'FR', type: 'housing', title: 'شقة مفروشة للكراء المؤقت واليومي في مارسيليا', city: 'Marseille · مرسيليا', price: '50 €', per: 'لليوم', tags: ['شقة كاملة', 'مفروش'] },
     { dest: 'ES', type: 'housing', title: 'غرفة مزدوجة مشمسة للإيجار في كاروليناس', city: 'Alicante · أليكانتي', price: '320 €', per: 'شهرياً', tags: ['شامل الفواتير', 'Empadronamiento'] }
   ];
 
-  function setDest(d, btn) {
-    activeDest = d;
-    document.querySelectorAll('.d-tab').forEach(b => b.classList.remove('on'));
+  function setBg(d, btn) {
+    curDest = d;
+    document.querySelectorAll('.d-btn').forEach(b => b.classList.remove('on'));
     btn.classList.add('on');
-    document.getElementById('heroImg').src = destData[d].img;
-    document.getElementById('heroBadge').textContent = destData[d].badge;
-    document.getElementById('heroTitle').textContent = destData[d].title;
-    showTab(activeTab);
+    document.body.style.backgroundImage = "url('" + bgMap[d].img + "')";
+    document.getElementById('destLabel').textContent = bgMap[d].label;
+    showTab(curTab);
   }
 
   function closeMore() { document.getElementById('moreBox').classList.remove('open'); }
 
+  function filterSeekers() {
+    const listEl = document.getElementById('seekersResults');
+    if (!listEl) return;
+    const filtered = seekersData.filter(s => {
+      const matchDest = curDest === 'EU' || s.dest === curDest;
+      const matchNie = curNie === 'ALL' || s.nie === curNie;
+      const matchTxt = !curSearch || s.name.includes(curSearch) || s.city.includes(curSearch) || s.exp.includes(curSearch);
+      return matchDest && matchNie && matchTxt;
+    });
+    listEl.innerHTML = filtered.length ? filtered.map(s => `
+      <div class="glass" style="margin-bottom:10px">
+        <div class="row">
+          <strong style="font-size:14px;color:#133A32">${s.name}</strong>
+          <span class="tag" style="background:#E6ECE8;color:#133A32">${s.nie}</span>
+        </div>
+        <p style="font-size:12px;color:#C85A28;font-weight:800;margin-top:4px">📍 ${s.city}</p>
+        <p style="font-size:12px;color:#4B5563;margin-top:4px">${s.exp}</p>
+        <a href="mailto:alicemplea.eu@://gmail.com مع: ${encodeURIComponent(s.name)}" class="btn-green" style="font-size:12px;padding:8px">✉️ تواصل مع المرشح</a>
+      </div>
+    `).join('') : '<div class="glass" style="text-align:center;font-size:13px;font-weight:700">لا توجد نتائج مطابقة لبحثك حالياً.</div>';
+  }
+
+  function setNie(val, btn) {
+    curNie = val;
+    document.querySelectorAll('.f-pill').forEach(p => p.classList.remove('on'));
+    btn.classList.add('on');
+    filterSeekers();
+  }
+
   function showTab(tab, chip) {
-    activeTab = tab;
+    curTab = tab;
     if (chip) {
       document.querySelectorAll('.chip').forEach(c => c.classList.remove('on'));
       chip.classList.add('on');
@@ -185,13 +237,13 @@
 
     if (tab === 'seekers' || tab === 'home') {
       main.innerHTML = `
-        <div class="box-sage">
+        <div class="glass-sage">
           <span style="font-size:11px;font-weight:800;color:#133A32">✨ منشئ السيرة الذاتية الأوروبية</span>
           <h2 style="font-size:18px;font-weight:900;margin:4px 0">منشئ السيرة الذاتية بالإسبانية والفرنسية</h2>
           <p style="font-size:12px;color:#4B5563">اكتب بياناتك بأي لغة وسيصيغها التطبيق بصيغة Europass المهنية (5€ / 8€).</p>
           <button class="btn-green" onclick="openSheet('cv')">✨ أنشئ سيرتي الذاتية الآن</button>
         </div>
-        <div class="box-white">
+        <div class="glass">
           <div class="row">
             <strong style="font-size:13px;color:#133A32">🤖 المساعد الذكي للعمل والاستقرار (AI)</strong>
             <span style="background:#E6ECE8;color:#133A32;font-size:10px;font-weight:800;padding:2px 8px;border-radius:99px">مباشر</span>
@@ -202,25 +254,27 @@
             <button class="ai-btn" onclick="openSheet('ai')">🎯<br>معادل المهن</button>
           </div>
         </div>
-        <div class="box-beige">
-          <input class="inp" placeholder="🔍 بحث في العروض والملفات..." />
+        <div class="glass">
+          <input class="inp" placeholder="🔍 اكتب مهنة أو مدينة للبحث الفوري..." oninput="curSearch=this.value.trim();filterSeekers()" />
           <div style="font-size:11px;font-weight:800;color:#4B5563;margin-bottom:6px">الوضع القانوني</div>
-          <div style="display:flex;gap:6px">
-            <span class="chip on">الكل</span>
-            <span class="chip">لديه NIE</span>
-            <span class="chip">بدون NIE</span>
+          <div class="f-row">
+            <button class="f-pill on" onclick="setNie('ALL',this)">الكل</button>
+            <button class="f-pill" onclick="setNie('لديه NIE',this)">لديه NIE</button>
+            <button class="f-pill" onclick="setNie('بدون NIE',this)">بدون NIE</button>
           </div>
         </div>
+        <div id="seekersResults"></div>
       `;
+      filterSeekers();
     } else if (tab === 'jobs' || tab === 'housing') {
-      const list = offersList.filter(o => o.type === tab && (activeDest === 'EU' || o.dest === activeDest));
+      const list = offersData.filter(o => o.type === tab && (curDest === 'EU' || o.dest === curDest));
       main.innerHTML = `
-        <div class="box-beige" style="text-align:center">
+        <div class="glass" style="text-align:center">
           <p style="font-size:12px;font-weight:700">لتمييز إعلانك في الأعلى مقابل <strong style="color:#C85A28">5 يورو</strong> راسل الإدارة:</p>
           <a href="mailto:alicemplea.eu@gmail.com" class="btn-green">✉️ التواصل عبر البريد (alicemplea.eu@gmail.com)</a>
         </div>
         ${list.map(i => `
-          <div class="box-white">
+          <div class="glass">
             <div class="row">
               <div><strong style="font-size:15px">${i.title}</strong><p style="font-size:12px;color:#6B7280;margin-top:4px">📍 ${i.city}</p></div>
               <div style="text-align:left"><strong style="color:#C85A28;font-size:17px">${i.price}</strong><div style="font-size:10px;color:#6B7280">${i.per}</div></div>
@@ -231,7 +285,7 @@
       `;
     } else if (tab === 'gov') {
       main.innerHTML = `
-        <div class="box-white" style="border-color:#133A32">
+        <div class="glass" style="border-color:#133A32">
           <span style="background:#133A32;color:#FFF;font-size:10px;padding:2px 8px;border-radius:99px">مصدر حكومي رسمي ✓</span>
           <h3 style="font-size:16px;font-weight:900;margin:8px 0">بوابات التوظيف الرسمية المعتمدة</h3>
           <a href="https://empleate.gob.es" target="_blank" class="btn-green">🇪🇸 بوابة SEPE / Empléate (إسبانيا) ↗</a>
@@ -240,7 +294,7 @@
       `;
     } else {
       main.innerHTML = `
-        <div class="box-beige" style="text-align:center">
+        <div class="glass" style="text-align:center">
           <h3 style="font-size:16px;font-weight:900">⭐ الباقات والخدمات الموثقة</h3>
           <p style="font-size:12px;margin:8px 0;line-height:1.8">• تمييز إعلان: <strong>5€</strong><br>• باقة التجار (معلن موثق ✓): <strong>15€ / شهرياً</strong><br>• دليل المحامين المعتمدين: <strong>25€ / شهرياً</strong></p>
           <a href="mailto:alicemplea.eu@gmail.com" class="btn-green">✉️ التواصل مع الإدارة (alicemplea.eu@gmail.com)</a>
@@ -258,7 +312,7 @@
           <select class="inp"><option>أبحث عن عمل (مجاني)</option><option>عرض عمل</option><option>عرض سكن</option></select>
           <input class="inp" required placeholder="عنوان العرض أو المهنة" />
           <input class="inp" required placeholder="المدينة (أليكانتي، باريس...)" />
-          <textarea class="inp" rows="3" required placeholder="التفاصيل ورقم التواصل..."></textarea>
+          <textarea class="inp" style="border-radius:16px" rows="3" required placeholder="التفاصيل ورقم التواصل..."></textarea>
           <label style="font-size:11px;display:block;margin-bottom:10px"><input type="checkbox" required /> أوافق على سياسة الخصوصية GDPR</label>
           <button class="btn-orange" type="submit">نشر الآن</button>
         </form>`;
@@ -270,6 +324,12 @@
           <select class="inp"><option>سيرة ذاتية CV فقط (5€)</option><option>CV + رسالة تحفيز (8€)</option></select>
           <button class="btn-green" type="submit">إرسال الطلب</button>
         </form>`;
+    } else if (type === 'langLearn') {
+      c.innerHTML = `<h3 style="font-weight:900;margin-bottom:8px">🗣️ قسم تعلم اللغات الأوروبية</h3>
+        <p style="font-size:12px;color:#4B5563">دروس تفاعلية بالنطق الصوتي للإسبانية والفرنسية والألمانية والإنجليزية للعمل والحياة اليومية.</p>`;
+    } else if (type === 'community') {
+      c.innerHTML = `<h3 style="font-weight:900;margin-bottom:8px">🤝 بوابة المجتمع الأوروبي المحلي</h3>
+        <p style="font-size:12px;color:#4B5563">الخدمات المصغرة (Bricolaje)، مشاركة السفر (Covoiturage)، سوق المستعمل، ودليل المنح الحكومية.</p>`;
     } else if (type === 'ai') {
       c.innerHTML = `<h3 style="font-weight:900;margin-bottom:8px">🤖 المساعد الذكي (Gemini AI)</h3>
         <p style="font-size:12px;color:#4B5563">جاهز للربط بمفتاح Gemini API المجاني الخاص بك لتشغيل محاكي المقابلات، المرشد الإداري، ومعادل المسميات المهنية.</p>`;
@@ -291,7 +351,7 @@
     en: { dir:'ltr', alert:'🛡️ Anti-scam alert: Never pay any deposit before viewing and signing a contract.', offer:'+ Post an offer', c1:'💼 Jobs', c2:'🔍 Job Seekers / CV', c3:'🏠 Housing', c4:'⚖️ Services & Plans' }
   };
 
-    function chLang(k, btn) {
+  function chLang(k, btn) {
     const d = L[k];
     document.documentElement.lang = k;
     document.documentElement.dir = d.dir;
@@ -306,5 +366,6 @@
   showTab('seekers');
 </script>
 <script src="https://google.com"></script>
+
 </body>
 </html>
