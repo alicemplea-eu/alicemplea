@@ -291,9 +291,20 @@
     en: { dir:'ltr', alert:'🛡️ Anti-scam alert: Never pay any deposit before viewing and signing a contract.', offer:'+ Post an offer', c1:'💼 Jobs', c2:'🔍 Job Seekers / CV', c3:'🏠 Housing', c4:'⚖️ Services & Plans' }
   };
 
-  function chLang(k, btn) {
+    function chLang(k, btn) {
     const d = L[k];
     document.documentElement.lang = k;
     document.documentElement.dir = d.dir;
     document.querySelectorAll('.l-btn').forEach(b => b.classList.remove('on'));
     btn.classList.add('on');
+    Object.keys(d).forEach(id => {
+      const el = document.getElementById('t_' + id);
+      if (el) el.textContent = d[id];
+    });
+  }
+
+  showTab('seekers');
+</script>
+<script src="https://google.com"></script>
+</body>
+</html>
