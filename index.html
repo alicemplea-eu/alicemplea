@@ -41,7 +41,6 @@
 <body>
 <div class="app">
   <div id="t_alert" class="alert">🛡️ تنبيه ضد النصب: لا تدفع أي مبلغ قبل معاينة السكن وتوقيع العقد.</div>
-
   <div class="top">
     <div class="row">
       <div style="display:flex;align-items:center;gap:8px">
@@ -53,12 +52,10 @@
         <button class="l-btn" onclick="chLang('es',this)">ES</button>
         <button class="l-btn" onclick="chLang('fr',this)">FR</button>
         <button class="l-btn" onclick="chLang('en',this)">EN</button>
-        <a href="https://translate.goog" target="_blank" class="l-btn" style="display:flex;align-items:center;justify-content:center;text-decoration:none;background:#EBE8E0" title="كل لغات العالم">🌍</a>
+        <a href="https://translate.goog" target="_blank" class="l-btn" style="display:flex;align-items:center;justify-content:center;text-decoration:none;background:#EBE8E0">🌍</a>
       </div>
     </div>
-
     <a id="t_offer" href="mailto:alicemplea.eu@://gmail.com عرض جديد" class="btn-orange">+ لدي عرض</a>
-
     <div class="chips">
       <a id="t_c1" href="#jobs" class="chip">💼 عروض العمل</a>
       <a id="t_c2" href="#seekers" class="chip on">🔍 أبحث عن عمل / السيرة</a>
@@ -67,7 +64,6 @@
       <a id="t_c4" href="#services" class="chip">⚖️ الخدمات والباقات</a>
     </div>
   </div>
-
   <div class="sec">
     <div class="hero-eu">
       <img src="image_14b87c6a.jpg" alt="Europe" />
@@ -147,3 +143,31 @@
   </div>
 
   <div class="b-nav">
+    <a id="t_n1" href="#" class="b-item on"><div class="b-icon">🏠</div>الرئيسية</a>
+    <a id="t_n2" href="#jobs" class="b-item"><div class="b-icon">💼</div>الوظائف</a>
+    <a id="t_n3" href="#housing" class="b-item"><div class="b-icon">🔑</div>الإيجار</a>
+    <a id="t_n4" href="#seekers" class="b-item"><div class="b-icon">👥</div>الباحثون</a>
+    <a id="t_n5" href="#services" class="b-item"><div class="b-icon">☰</div>المزيد</a>
+  </div>
+</div>
+<script>
+const L = {
+  ar: { dir:'rtl', alert:'🛡️ تنبيه ضد النصب: لا تدفع أي مبلغ قبل معاينة السكن وتوقيع العقد.', offer:'+ لدي عرض', c1:'💼 عروض العمل', c2:'🔍 أبحث عن عمل / السيرة', c3:'🏠 سكن', c4:'⚖️ الخدمات والباقات', b1:'🇪🇺 المنصة الأوروبية الشاملة', b2:'العمل والسكن والخدمات في إسبانيا وفرنسا', es:'🇪🇸 إسبانيا', fr:'🇫🇷 فرنسا', cv1:'✨ منشئ السيرة الذاتية الأوروبية', cv2:'منشئ السيرة الذاتية بالإسبانية والفرنسية', cv3:'اكتب بياناتك بأي لغة وسيصيغها التطبيق بصيغة Europass المهنية (5€ / 8€).', cv4:'✨ أنشئ سيرتي الذاتية الآن', ai:'🤖 المساعد الذكي (AI Assistant)', a1:'🎙️<br>محاكي المقابلات', a2:'🏛️<br>المرشد الإداري', a3:'🎯<br>معادل المهن', p1:'⭐ باقات الإعلان الموثق والخدمات', p2:'✉️ التواصل مع الإدارة (alicemplea.eu@gmail.com)', n1:'<div class="b-icon">🏠</div>الرئيسية', n2:'<div class="b-icon">💼</div>الوظائف', n3:'<div class="b-icon">🔑</div>الإيجار', n4:'<div class="b-icon">👥</div>الباحثون', n5:'<div class="b-icon">☰</div>المزيد' },
+  es: { dir:'ltr', alert:'🛡️ Aviso antifraude: No pagues nada antes de ver el piso y firmar contrato.', offer:'+ Publicar oferta', c1:'💼 Empleo', c2:'🔍 Busco empleo / CV', c3:'🏠 Vivienda', c4:'⚖️ Servicios y Tarifas', b1:'🇪🇺 Plataforma Europea Integral', b2:'Empleo, Vivienda y Servicios en España y Francia', es:'🇪🇸 España', fr:'🇫🇷 Francia', cv1:'✨ Creador de CV Europeo', cv2:'Crea tu CV profesional en Español y Francés', cv3:'Escribe tus datos en cualquier idioma y lo redactamos en formato Europass (5€ / 8€).', cv4:'✨ Crear mi CV ahora', ai:'🤖 Asistente Inteligente (AI)', a1:'🎙️<br>Entrevistas AI', a2:'🏛️<br>Guía Trámites', a3:'🎯<br>Equivalencias', p1:'⭐ Tarifas y Servicios Verificados', p2:'✉️ Contactar Administración (alicemplea.eu@gmail.com)', n1:'<div class="b-icon">🏠</div>Inicio', n2:'<div class="b-icon">💼</div>Empleos', n3:'<div class="b-icon">🔑</div>Alquiler', n4:'<div class="b-icon">👥</div>Candidatos', n5:'<div class="b-icon">☰</div>Más' },
+  fr: { dir:'ltr', alert:'🛡️ Alerte anti-arnaque : Ne payez rien avant de visiter et signer le bail.', offer:'+ Publier une offre', c1:'💼 Emploi', c2:'🔍 Cherche emploi / CV', c3:'🏠 Logement', c4:'⚖️ Services & Tarifs', b1:'🇪🇺 Plateforme Européenne Complète', b2:'Emploi, Logement et Services en Espagne et France', es:'🇪🇸 Espagne', fr:'🇫🇷 France', cv1:'✨ Créateur de CV Européen', cv2:'Créez votre CV professionnel en Français et Espagnol', cv3:'Saisissez vos infos dans votre langue, nous créons votre CV Europass (5€ / 8€).', cv4:'✨ Créer mon CV maintenant', ai:'🤖 Assistant Intelligent (IA)', a1:'🎙️<br>Entretien IA', a2:'🏛️<br>Guide Démarches', a3:'🎯<br>Équivalences', p1:'⭐ Tarifs et Services Vérifiés', p2:'✉️ Contacter l’Admin (alicemplea.eu@gmail.com)', n1:'<div class="b-icon">🏠</div>Accueil', n2:'<div class="b-icon">💼</div>Emplois', n3:'<div class="b-icon">🔑</div>Location', n4:'<div class="b-icon">👥</div>Candidats', n5:'<div class="b-icon">☰</div>Plus' },
+  en: { dir:'ltr', alert:'🛡️ Anti-scam alert: Never pay any deposit before viewing and signing a contract.', offer:'+ Post an offer', c1:'💼 Jobs', c2:'🔍 Job Seekers / CV', c3:'🏠 Housing', c4:'⚖️ Services & Plans', b1:'🇪🇺 All-in-One European Platform', b2:'Jobs, Housing & Services in Spain and France', es:'🇪🇸 Spain', fr:'🇫🇷 France', cv1:'✨ European CV Builder', cv2:'Build your professional CV in Spanish & French', cv3:'Enter your details in any language and get a Europass CV (5€ / 8€).', cv4:'✨ Create my CV now', ai:'🤖 Smart AI Assistant', a1:'🎙️<br>AI Interview', a2:'🏛️<br>Admin Guide', a3:'🎯<br>Job Matcher', p1:'⭐ Verified Plans & Services', p2:'✉️ Contact Admin (alicemplea.eu@gmail.com)', n1:'<div class="b-icon">🏠</div>Home', n2:'<div class="b-icon">💼</div>Jobs', n3:'<div class="b-icon">🔑</div>Rent', n4:'<div class="b-icon">👥</div>Seekers', n5:'<div class="b-icon">☰</div>More' }
+};
+function chLang(k, btn) {
+  const d = L[k];
+  document.documentElement.lang = k;
+  document.documentElement.dir = d.dir;
+  document.querySelectorAll('.l-btn').forEach(b => b.classList.remove('on'));
+  btn.classList.add('on');
+  Object.keys(d).forEach(id => {
+    const el = document.getElementById('t_' + id);
+    if (el) el.innerHTML = d[id];
+  });
+}
+</script>
+</body>
+</html>
