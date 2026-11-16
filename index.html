@@ -266,20 +266,6 @@
 
   showTab('seekers');
 </script>
-  <div id="alicemplea-social" style="position:fixed; bottom:66px; right:10px; z-index:950; display:flex; flex-direction:row; gap:6px;">
-  <a href="#" onclick="openSocial('fb'); return false;" aria-label="Facebook" style="width:32px; height:32px; border-radius:50%; background:#1877F2; color:#fff; display:flex; align-items:center; justify-content:center; box-shadow:0 2px 6px rgba(0,0,0,0.35); text-decoration:none;">
-    <svg width="15" height="15" fill="currentColor" viewBox="0 0 24 24"><path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.95c5.05-.5 9-4.76 9-9.95z"/></svg>
-  </a>
-  <a href="#" onclick="openSocial('ig'); return false;" aria-label="Instagram" style="width:32px; height:32px; border-radius:50%; background:linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888); color:#fff; display:flex; align-items:center; justify-content:center; box-shadow:0 2px 6px rgba(0,0,0,0.35); text-decoration:none;">
-    <svg width="15" height="15" fill="currentColor" viewBox="0 0 24 24"><path d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 4 7.6v8.8C4 18.39 5.61 20 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6C20 5.61 18.39 4 16.4 4H7.6m9.65 1.5a1.25 1.25 0 0 1 1.25 1.25A1.25 1.25 0 0 1 17.25 8 1.25 1.25 0 0 1 16 6.75a1.25 1.25 0 0 1 1.25-1.25M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3z"/></svg>
-  </a>
-  <a href="#" onclick="openSocial('tt'); return false;" aria-label="TikTok" style="width:32px; height:32px; border-radius:50%; background:#000; border:1px solid #25F4EE; color:#fff; display:flex; align-items:center; justify-content:center; box-shadow:0 2px 6px rgba(0,0,0,0.35); text-decoration:none;">
-    <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M16.6 5.82s.51.5 0 0A4.278 4.278 0 0 1 15.54 3h-3.09v12.4a2.592 2.592 0 0 1-2.59 2.5c-1.42 0-2.6-1.16-2.6-2.6 0-1.72 1.66-3.01 3.37-2.48V9.66c-3.45-.46-6.47 2.22-6.47 5.64 0 3.33 2.76 5.7 5.69 5.7 3.14 0 5.69-2.55 5.69-5.7V9.01a7.35 7.35 0 0 0 4.3 1.38V7.3s-1.88.09-3.24-1.48z"/></svg>
-  </a>
-  <a href="#" onclick="openSocial('gm'); return false;" aria-label="Email" style="width:32px; height:32px; border-radius:50%; background:#0284c7; color:#fff; display:flex; align-items:center; justify-content:center; box-shadow:0 2px 6px rgba(0,0,0,0.35); text-decoration:none;">
-    <svg width="15" height="15" fill="currentColor" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/></svg>
-  </a>
-</div>
 <script>
 function openSocial(p) {
   const u = 'alicemplea';
@@ -402,32 +388,100 @@ document.querySelectorAll('a, button').forEach(el => {
   }
   loadAutoJobsFeed();
 </script>
-  <script>
+ <script>
   const uiDict = {
-    fr: {'أوروبا':'Europe','إسبانيا':'Espagne','فرنسا':'France','الكل':'Tous','لديه NIE':'Avec NIE','بدون NIE':'Sans NIE','الرئيسية':'Accueil','الوظائف':'Emplois','الإيجار':'Logement','الباحثون':'Candidats','المزيد':'Plus','تواصل':'Contacter','متاح للعمل':'Disponible','متاحة للعمل':'Disponible','يوسف المنصوري — سائق شاحنات ورافعة':'Youssef Mansouri — Chauffeur poids lourd','سارة بن علي — طباخة ومساعدة مطبخ':'Sara Ben Ali — Cuisinière & aide de cuisine','أليكانتي':'Alicante','مدريد':'Madrid','الاتحاد الأوروبي':'Union Européenne','الشامل':'Global'},
-    es: {'أوروبا':'Europa','إسبانيا':'España','فرنسا':'Francia','الكل':'Todos','لديه NIE':'Con NIE','بدون NIE':'Sin NIE','الرئيسية':'Inicio','الوظائف':'Empleos','الإيجار':'Vivienda','الباحثون':'Candidatos','المزيد':'Más','تواصل':'Contactar','متاح للعمل':'Disponible','متاحة للعمل':'Disponible','يوسف المنصوري — سائق شاحنات ورافعة':'Youssef Mansouri — Conductor de camión','سارة بن علي — طباخة ومساعدة مطبخ':'Sara Ben Ali — Cocinera y ayudante','أليكانتي':'Alicante','مدريد':'Madrid','الاتحاد الأوروبي':'Unión Europea','الشامل':'Global'},
-    en: {'أوروبا':'Europe','إسبانيا':'Spain','فرنسا':'France','الكل':'All','لديه NIE':'With NIE','بدون NIE':'Without NIE','الرئيسية':'Home','الوظائف':'Jobs','الإيجار':'Housing','الباحثون':'Seekers','المزيد':'More','تواصل':'Contact','متاح للعمل':'Available','متاحة للعمل':'Available','يوسف المنصوري — سائق شاحنات ورافعة':'Youssef Mansouri — Truck & Crane Driver','سارة بن علي — طباخة ومساعدة مطبخ':'Sara Ben Ali — Cook & Kitchen Assistant','أليكانتي':'Alicante','مدريد':'Madrid','الاتحاد الأوروبي':'European Union','الشامل':'Global'}
+    fr: {
+      'كل الأقسام':'Toutes les catégories','أبحث عن عمل / السيرة':'Cherche emploi / CV','أبحث عن سكن':'Cherche logement',
+      'المساعد الذكي':'Assistant IA','منشئ السيرة الذاتية':'Créateur de CV','عروض رسمية':'Offres officielles','لوحة تحكم المالك':'Espace Admin','جديد':'Nouveau',
+      'الرئيسية':'Accueil','الوظائف':'Emplois','الإيجار':'Logement','الباحثون':'Candidats','المزيد':'Plus',
+      'أوروبا':'Europe','إسبانيا':'Espagne','فرنسا':'France','الكل':'Tous','لديه NIE':'Avec NIE','بدون NIE':'Sans NIE','تواصل':'Contacter',
+      'متاح للعمل':'Disponible','متاحة للعمل':'Disponible','الاتحاد الأوروبي':'Union Européenne','الشامل':'Global',
+      'يوسف المنصوري — سائق شاحنات ورافعة':'Youssef Mansouri — Chauffeur poids lourd',
+      'سارة بن علي — طباخة ومساعدة مطبخ':'Sara Ben Ali — Cuisinière & aide de cuisine',
+      'كريم بوزيد — كهربائي بناء وصيانة':'Karim Bouzid — Électricien bâtiment',
+      'نادية العلمي — مربية أطفال ورعاية':'Nadia Alami — Nounou & aide à domicile',
+      'أليكانتي':'Alicante','مدريد':'Madrid','باريس':'Paris','مرسيليا':'Marseille',
+      'سارية C+E خبرة 6 سنوات، رخصة':'Permis C+E valide, 6 ans d’expérience',
+      'إجادة المطبخ الإسباني والمتوسطي':'Maîtrise de la cuisine espagnole',
+      'خبرة 8 سنوات في التمديدات السكنية':'8 ans d’expérience électrique',
+      'تتحدث العربية والفرنسية بطلاقة':'Parle couramment arabe et français'
+    },
+    es: {
+      'كل الأقسام':'Todas las categorías','أبحث عن عمل / السيرة':'Busco empleo / CV','أبحث عن سكن':'Busco vivienda',
+      'المساعد الذكي':'Asistente IA','منشئ السيرة الذاتية':'Creador de CV','عروض رسمية':'Ofertas oficiales','لوحة تحكم المالك':'Panel Admin','جديد':'Nuevo',
+      'الرئيسية':'Inicio','الوظائف':'Empleos','الإيجار':'Vivienda','الباحثون':'Candidatos','المزيد':'Más',
+      'أوروبا':'Europa','إسبانيا':'España','فرنسا':'Francia','الكل':'Todos','لديه NIE':'Con NIE','بدون NIE':'Sin NIE','تواصل':'Contactar',
+      'متاح للعمل':'Disponible','متاحة للعمل':'Disponible','الاتحاد الأوروبي':'Unión Europea','الشامل':'Global',
+      'يوسف المنصوري — سائق شاحنات ورافعة':'Youssef Mansouri — Conductor de camión',
+      'سارة بن علي — طباخة ومساعدة مطبخ':'Sara Ben Ali — Cocinera y ayudante',
+      'كريم بوزيد — كهربائي بناء وصيانة':'Karim Bouzid — Electricista de obra',
+      'نادية العلمي — مربية أطفال ورعاية':'Nadia Alami — Niñera y cuidado',
+      'أليكانتي':'Alicante','مدريد':'Madrid','باريس':'Paris','مرسيليا':'Marsella',
+      'سارية C+E خبرة 6 سنوات، رخصة':'Permis C+E vigente, 6 años de experiencia',
+      'إجادة المطبخ الإسباني والمتوسطي':'Domina cocina española y mediterránea',
+      'خبرة 8 سنوات في التمديدات السكنية':'8 años de experiencia eléctrica',
+      'تتحدث العربية والفرنسية بطلاقة':'Habla árabe y francés fluido'
+    },
+    en: {
+      'كل الأقسام':'All Categories','أبحث عن عمل / السيرة':'Job Seekers / CV','أبحث عن سكن':'Looking for Housing',
+      'المساعد الذكي':'AI Assistant','منشئ السيرة الذاتية':'CV Builder','عروض رسمية':'Official Offers','لوحة تحكم المالك':'Admin Panel','جديد':'New',
+      'الرئيسية':'Home','الوظائف':'Jobs','الإيجار':'Housing','الباحثون':'Seekers','المزيد':'More',
+      'أوروبا':'Europe','إسبانيا':'Spain','فرنسا':'France','الكل':'All','لديه NIE':'With NIE','بدون NIE':'Without NIE','تواصل':'Contact',
+      'متاح للعمل':'Available','متاحة للعمل':'Available','الاتحاد الأوروبي':'European Union','الشامل':'Global',
+      'يوسف المنصوري — سائق شاحنات ورافعة':'Youssef Mansouri — Truck & Crane Driver',
+      'سارة بن علي — طباخة ومساعدة مطبخ':'Sara Ben Ali — Cook & Kitchen Assistant',
+      'كريم بوزيد — كهربائي بناء وصيانة':'Karim Bouzid — Building Electrician',
+      'نادية العلمي — مربية أطفال ورعاية':'Nadia Alami — Nanny & Caregiver',
+      'أليكانتي':'Alicante','مدريد':'Madrid','باريس':'Paris','مرسيليا':'Marseille',
+      'سارية C+E خبرة 6 سنوات، رخصة':'Valid C+E license, 6 years experience',
+      'إجادة المطبخ الإسباني والمتوسطي':'Skilled in Spanish cuisine',
+      'خبرة 8 سنوات في التمديدات السكنية':'8 years electrical wiring experience',
+      'تتحدث العربية والفرنسية بطلاقة':'Fluent in Arabic & French'
+    }
   };
 
-  function translateFullUI(lang) {
+  function translateEveryWord(lang) {
     const map = uiDict[lang];
     if (!map) return;
-    document.querySelectorAll('*').forEach(el => {
-      if (el.children.length === 0 && el.textContent.trim()) {
-        for (const [ar, tr] of Object.entries(map)) {
-          if (el.textContent.includes(ar)) el.textContent = el.textContent.replaceAll(ar, tr);
-        }
+    const keys = Object.keys(map).sort((a, b) => b.length - a.length);
+    const walk = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, null, false);
+    let node;
+    while ((node = walk.nextNode())) {
+      let val = node.nodeValue;
+      if (!val || !val.trim()) continue;
+      for (const ar of keys) {
+        if (val.includes(ar)) val = val.replaceAll(ar, map[ar]);
       }
-    });
+      node.nodeValue = val;
+    }
     const inp = document.querySelector('input');
     if (inp) inp.placeholder = lang === 'fr' ? 'Rechercher une ville, un emploi...' : (lang === 'es' ? 'Buscar ciudad, empleo...' : 'Search city, job or housing...');
+  }
+
+  function injectCommunityCard() {
+    if (document.getElementById('community-hub')) return;
+    const container = document.getElementById('results') || document.querySelector('.app');
+    if (!container) return;
+    const hub = document.createElement('div');
+    hub.id = 'community-hub';
+    hub.style.cssText = 'margin:18px 0 90px;padding:16px;border-radius:18px;background:rgba(15,23,42,0.9);border:1px solid rgba(255,255,255,0.2);text-align:center;color:#fff;';
+    hub.innerHTML = `
+      <div style="font-weight:bold;font-size:15px;margin-bottom:6px;">🌍 Alicemplea Official Community</div>
+      <div style="display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-top:10px;">
+        <button onclick="openSocial('fb')" style="padding:8px 14px;border-radius:20px;border:none;background:#1877F2;color:#fff;font-weight:bold;cursor:pointer;">Facebook</button>
+        <button onclick="openSocial('ig')" style="padding:8px 14px;border-radius:20px;border:none;background:#E1306C;color:#fff;font-weight:bold;cursor:pointer;">Instagram</button>
+        <button onclick="openSocial('tt')" style="padding:8px 14px;border-radius:20px;border:none;background:#000;border:1px solid #25F4EE;color:#fff;font-weight:bold;cursor:pointer;">TikTok</button>
+        <button onclick="openSocial('gm')" style="padding:8px 14px;border-radius:20px;border:none;background:#0284c7;color:#fff;font-weight:bold;cursor:pointer;">Email</button>
+      </div>`;
+    container.appendChild(hub);
   }
 
   const origRender = window.renderResults;
   window.renderResults = function() {
     if (typeof origRender === 'function') origRender();
+    injectCommunityCard();
     const cur = localStorage.getItem('alicemplea_lang');
-    if (cur && cur !== 'ar') translateFullUI(cur);
+    if (cur && cur !== 'ar') translateEveryWord(cur);
   };
 
   const origChLang = window.chLang;
@@ -441,12 +495,13 @@ document.querySelectorAll('a, button').forEach(el => {
       });
     }
     if (typeof origChLang === 'function') origChLang(k, btn);
-    if (k !== 'ar') setTimeout(() => translateFullUI(k), 60);
+    if (k !== 'ar') setTimeout(() => translateEveryWord(k), 50);
   };
 
+  injectCommunityCard();
   const savedLang = localStorage.getItem('alicemplea_lang') || (navigator.language || 'fr').slice(0, 2).toLowerCase();
   if (typeof L !== 'undefined' && L[savedLang]) window.chLang(savedLang, null);
 </script>
-
+  
 </body>  
 </html>
