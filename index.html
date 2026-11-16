@@ -309,5 +309,69 @@ document.querySelectorAll('a, button').forEach(el => {
     console.log('Supabase Connected');
   };
 </script>
+  <script>
+  // 1. جلب الإعلانات الحية من Supabase ودمجها في الواجهة
+  async function syncSupabaseListings() {
+    if (!window.alicempleaDB) return setTimeout(syncSupabaseListings, 400);
+    const { data, error } = await window.alicempleaDB
+      .from('listings')
+      .select('*')
+      .order('is_featured', { ascending: false })
+      .order('created_at', { ascending: false });
+    if (!error && data && data.length) {
+      const live = data.map(r => ({
+        id: r.id,
+        dest: r.region,
+        type: r.category,
+        title: (r.is_official ? '🏛️ ' : '') + (r.verified_badge !== 'none' ? '✅ ' : '') + r.title,
+        city: r.city,
+        nie: r.nie_status === 'with_nie' ? 'NIE' : (r.nie_status === 'without_nie' ? 'No NIE' : 'All'),
+        desc: r.description + ' | 📞 ' + r.contact_info + ' [ID:' + r.id.slice(0,6) + ']'
+      }));
+      allItems.unshift(...live);
+      if (typeof renderResults === 'function') renderResults();
+    }
+  }
+  syncSupabaseListings();
+
+  // 2. تفعيل نافذة النشر الفوري في openSheet('publish')
+  const origOpenSheet = window.openSheet;
+  window.openSheet = function(type) {
+    if (typeof origOpenSheet === 'function') origOpenSheet(type);
+    if (type === 'publish') {
+      const box = document.getElementById('sheetContent') || document.querySelector('#sheetBox div');
+      if (!box) return;
+      box.innerHTML = `
+        <h3 style="margin-bottom:10px;color:#fff;">➕ نشر إعلان جديد (21 يوماً مجاناً)</h3>
+        <select id="pDest" class="inp" style="margin-bottom:8px;"><option value="ES">🇪🇸 إسبانيا (ES)</option><option value="FR">🇫🇷 فرنسا (FR)</option><option value="EU">🇪🇺 الاتحاد الأوروبي (EU)</option></select>
+        <select id="pType" class="inp" style="margin-bottom:8px;"><option value="jobs">💼 عروض عمل</option><option value="seekers">👷 باحث عن عمل</option><option value="housing">🏠 سكن وغرف</option><option value="services">🛠️ خدمات</option></select>
+        <input id="pTitle" class="inp" placeholder="عنوان الإعلان (مثال: مطلوب سائق شاحنة)" style="margin-bottom:8px;">
+        <input id="pCity" class="inp" placeholder="المدينة (مثال: Madrid, Paris, Alicante)" style="margin-bottom:8px;">
+        <select id="pNie" class="inp" style="margin-bottom:8px;"><option value="all">الكل (مع أو بدون NIE)</option><option value="with_nie">يتطلب NIE / أوراق</option><option value="without_nie">بدون NIE</option></select>
+        <textarea id="pDesc" class="inp" placeholder="تفاصيل العرض أو المهارات..." style="margin-bottom:8px;height:70px;"></textarea>
+        <input id="pContact" class="inp" placeholder="وسيلة التواصل (واتساب، هاتف، أو بريد)" style="margin-bottom:10px;">
+        <button onclick="submitNewAd()" style="width:100%;padding:12px;border-radius:12px;border:none;background:#10b981;color:#fff;font-weight:bold;cursor:pointer;">🚀 نشر الإعلان فوراً</button>
+      `;
+    }
+  };
+
+  async function submitNewAd() {
+    if (!window.alicempleaDB) return alert('جاري الاتصال بقاعدة البيانات...');
+    const row = {
+      region: document.getElementById('pDest').value,
+      category: document.getElementById('pType').value,
+      title: document.getElementById('pTitle').value.trim(),
+      city: document.getElementById('pCity').value.trim(),
+      nie_status: document.getElementById('pNie').value,
+      description: document.getElementById('pDesc').value.trim(),
+      contact_info: document.getElementById('pContact').value.trim()
+    };
+    if (!row.title || !row.city || !row.contact_info) return alert('يرجى ملء العنوان والمدينة ووسيلة التواصل');
+    const { error } = await window.alicempleaDB.from('listings').insert([row]);
+    if (error) return alert('خطأ: ' + error.message);
+    alert('✅ تم نشر إعلانك بنجاح! سيبقى نشطاً لمدة 21 يوماً.');
+    location.reload();
+  }
+</script>
 </body>  
 </html>
