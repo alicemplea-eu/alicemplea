@@ -403,38 +403,50 @@ document.querySelectorAll('a, button').forEach(el => {
   loadAutoJobsFeed();
 </script>
   <script>
-  // نظام حفظ اللغة والترجمة الشاملة التلقائية للواجهة
   const uiDict = {
-    fr: {'أوروبا':'Europe','إسبانيا':'Espagne','فرنسا':'France','الكل':'Tous','لديه NIE':'Avec NIE','بدون NIE':'Sans NIE','الرئيسية':'Accueil','الوظائف':'Emplois','الإيجار':'Logement','الباحثون':'Candidats','المزيد':'Plus','تواصل':'Contacter'},
-    es: {'أوروبا':'Europa','إسبانيا':'España','فرنسا':'Francia','الكل':'Todos','لديه NIE':'Con NIE','بدون NIE':'Sin NIE','الرئيسية':'Inicio','الوظائف':'Empleos','الإيجار':'Vivienda','الباحثون':'Candidatos','المزيد':'Más','تواصل':'Contactar'},
-    en: {'أوروبا':'Europe','إسبانيا':'Spain','فرنسا':'France','الكل':'All','لديه NIE':'With NIE','بدون NIE':'Without NIE','الرئيسية':'Home','الوظائف':'Jobs','الإيجار':'Housing','الباحثون':'Seekers','المزيد':'More','تواصل':'Contact'}
+    fr: {'أوروبا':'Europe','إسبانيا':'Espagne','فرنسا':'France','الكل':'Tous','لديه NIE':'Avec NIE','بدون NIE':'Sans NIE','الرئيسية':'Accueil','الوظائف':'Emplois','الإيجار':'Logement','الباحثون':'Candidats','المزيد':'Plus','تواصل':'Contacter','متاح للعمل':'Disponible','متاحة للعمل':'Disponible','يوسف المنصوري — سائق شاحنات ورافعة':'Youssef Mansouri — Chauffeur poids lourd','سارة بن علي — طباخة ومساعدة مطبخ':'Sara Ben Ali — Cuisinière & aide de cuisine','أليكانتي':'Alicante','مدريد':'Madrid','الاتحاد الأوروبي':'Union Européenne','الشامل':'Global'},
+    es: {'أوروبا':'Europa','إسبانيا':'España','فرنسا':'Francia','الكل':'Todos','لديه NIE':'Con NIE','بدون NIE':'Sin NIE','الرئيسية':'Inicio','الوظائف':'Empleos','الإيجار':'Vivienda','الباحثون':'Candidatos','المزيد':'Más','تواصل':'Contactar','متاح للعمل':'Disponible','متاحة للعمل':'Disponible','يوسف المنصوري — سائق شاحنات ورافعة':'Youssef Mansouri — Conductor de camión','سارة بن علي — طباخة ومساعدة مطبخ':'Sara Ben Ali — Cocinera y ayudante','أليكانتي':'Alicante','مدريد':'Madrid','الاتحاد الأوروبي':'Unión Europea','الشامل':'Global'},
+    en: {'أوروبا':'Europe','إسبانيا':'Spain','فرنسا':'France','الكل':'All','لديه NIE':'With NIE','بدون NIE':'Without NIE','الرئيسية':'Home','الوظائف':'Jobs','الإيجار':'Housing','الباحثون':'Seekers','المزيد':'More','تواصل':'Contact','متاح للعمل':'Available','متاحة للعمل':'Available','يوسف المنصوري — سائق شاحنات ورافعة':'Youssef Mansouri — Truck & Crane Driver','سارة بن علي — طباخة ومساعدة مطبخ':'Sara Ben Ali — Cook & Kitchen Assistant','أليكانتي':'Alicante','مدريد':'Madrid','الاتحاد الأوروبي':'European Union','الشامل':'Global'}
   };
 
   function translateFullUI(lang) {
     const map = uiDict[lang];
     if (!map) return;
-    document.querySelectorAll('button, span, div, a').forEach(el => {
-      if (el.children.length === 0) {
-        const txt = el.textContent.trim();
+    document.querySelectorAll('*').forEach(el => {
+      if (el.children.length === 0 && el.textContent.trim()) {
         for (const [ar, tr] of Object.entries(map)) {
-          if (txt.includes(ar)) el.textContent = el.textContent.replace(ar, tr);
+          if (el.textContent.includes(ar)) el.textContent = el.textContent.replaceAll(ar, tr);
         }
       }
     });
+    const inp = document.querySelector('input');
+    if (inp) inp.placeholder = lang === 'fr' ? 'Rechercher une ville, un emploi...' : (lang === 'es' ? 'Buscar ciudad, empleo...' : 'Search city, job or housing...');
   }
+
+  const origRender = window.renderResults;
+  window.renderResults = function() {
+    if (typeof origRender === 'function') origRender();
+    const cur = localStorage.getItem('alicemplea_lang');
+    if (cur && cur !== 'ar') translateFullUI(cur);
+  };
 
   const origChLang = window.chLang;
   window.chLang = function(k, btn) {
+    const prev = localStorage.getItem('alicemplea_lang');
     localStorage.setItem('alicemplea_lang', k);
+    if (k === 'ar' && prev && prev !== 'ar' && btn) return location.reload();
+    if (!btn) {
+      document.querySelectorAll('button, span, div').forEach(b => {
+        if (b.children.length === 0 && b.textContent.trim().toUpperCase() === k.toUpperCase()) btn = b;
+      });
+    }
     if (typeof origChLang === 'function') origChLang(k, btn);
-    if (k !== 'ar') translateFullUI(k);
+    if (k !== 'ar') setTimeout(() => translateFullUI(k), 60);
   };
 
-  // تشغيل اللغة المحفوظة أو لغة الهاتف تلقائياً عند الفتح
   const savedLang = localStorage.getItem('alicemplea_lang') || (navigator.language || 'fr').slice(0, 2).toLowerCase();
-  if (typeof L !== 'undefined' && L[savedLang]) {
-    window.chLang(savedLang, null);
-  }
+  if (typeof L !== 'undefined' && L[savedLang]) window.chLang(savedLang, null);
 </script>
+
 </body>  
 </html>
