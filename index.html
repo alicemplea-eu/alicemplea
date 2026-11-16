@@ -402,5 +402,39 @@ document.querySelectorAll('a, button').forEach(el => {
   }
   loadAutoJobsFeed();
 </script>
+  <script>
+  // نظام حفظ اللغة والترجمة الشاملة التلقائية للواجهة
+  const uiDict = {
+    fr: {'أوروبا':'Europe','إسبانيا':'Espagne','فرنسا':'France','الكل':'Tous','لديه NIE':'Avec NIE','بدون NIE':'Sans NIE','الرئيسية':'Accueil','الوظائف':'Emplois','الإيجار':'Logement','الباحثون':'Candidats','المزيد':'Plus','تواصل':'Contacter'},
+    es: {'أوروبا':'Europa','إسبانيا':'España','فرنسا':'Francia','الكل':'Todos','لديه NIE':'Con NIE','بدون NIE':'Sin NIE','الرئيسية':'Inicio','الوظائف':'Empleos','الإيجار':'Vivienda','الباحثون':'Candidatos','المزيد':'Más','تواصل':'Contactar'},
+    en: {'أوروبا':'Europe','إسبانيا':'Spain','فرنسا':'France','الكل':'All','لديه NIE':'With NIE','بدون NIE':'Without NIE','الرئيسية':'Home','الوظائف':'Jobs','الإيجار':'Housing','الباحثون':'Seekers','المزيد':'More','تواصل':'Contact'}
+  };
+
+  function translateFullUI(lang) {
+    const map = uiDict[lang];
+    if (!map) return;
+    document.querySelectorAll('button, span, div, a').forEach(el => {
+      if (el.children.length === 0) {
+        const txt = el.textContent.trim();
+        for (const [ar, tr] of Object.entries(map)) {
+          if (txt.includes(ar)) el.textContent = el.textContent.replace(ar, tr);
+        }
+      }
+    });
+  }
+
+  const origChLang = window.chLang;
+  window.chLang = function(k, btn) {
+    localStorage.setItem('alicemplea_lang', k);
+    if (typeof origChLang === 'function') origChLang(k, btn);
+    if (k !== 'ar') translateFullUI(k);
+  };
+
+  // تشغيل اللغة المحفوظة أو لغة الهاتف تلقائياً عند الفتح
+  const savedLang = localStorage.getItem('alicemplea_lang') || (navigator.language || 'fr').slice(0, 2).toLowerCase();
+  if (typeof L !== 'undefined' && L[savedLang]) {
+    window.chLang(savedLang, null);
+  }
+</script>
 </body>  
 </html>
