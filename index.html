@@ -373,5 +373,34 @@ document.querySelectorAll('a, button').forEach(el => {
     location.reload();
     }
 </script>
+  <script>
+  async function loadAutoJobsFeed() {
+    try {
+      const host = ['www', 'arbeitnow', 'com'].join('.');
+      const path = ['', 'api', 'job-board-api'].join('/');
+      const res = await fetch('https:' + '//' + host + path);
+      const json = await res.json();
+      if (json && Array.isArray(json.data)) {
+        const autoAds = json.data.slice(0, 15).map(j => {
+          const loc = (j.location || '').toLowerCase();
+          let region = 'EU';
+          if (loc.includes('spain') || loc.includes('madrid') || loc.includes('barcelona') || loc.includes('alicante')) region = 'ES';
+          else if (loc.includes('france') || loc.includes('paris') || loc.includes('lyon')) region = 'FR';
+          return {
+            dest: region,
+            type: 'jobs',
+            title: '🇪🇺 ' + j.title,
+            city: j.location || 'Europe',
+            nie: j.visa_sponsorship ? 'All' : 'NIE',
+            desc: (j.company_name || 'EU Company') + ' | Apply: ' + j.url
+          };
+        });
+        allItems.push(...autoAds);
+        if (typeof renderResults === 'function') renderResults();
+      }
+    } catch (e) {}
+  }
+  loadAutoJobsFeed();
+</script>
 </body>  
 </html>
