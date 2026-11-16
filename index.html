@@ -10,54 +10,48 @@
     body { background: #133A32; color: #1F2933; }
     .app {
       max-width: 520px; margin: 0 auto; min-height: 100vh; position: relative;
-      background-image: linear-gradient(to bottom, rgba(19,58,50,0.28), rgba(19,58,50,0.45)), url('image_14b87c6a.jpg');
-      background-size: cover; background-position: center top; background-repeat: no-repeat; background-attachment: fixed;
+      background-image: linear-gradient(to bottom, rgba(0,0,0,0.08), rgba(0,0,0,0.18)), url('image_14b87c6a.jpg');
+      background-size: cover; background-position: center center; background-repeat: no-repeat;
       padding-bottom: 95px; transition: background-image 0.4s ease;
     }
-    .alert { background: rgba(242, 226, 216, 0.94); color: #8C3B19; font-size: 11px; font-weight: 800; padding: 8px; text-align: center; }
+    .alert { background: rgba(242, 226, 216, 0.78); backdrop-filter: blur(6px); color: #8C3B19; font-size: 11px; font-weight: 800; padding: 8px; text-align: center; }
     .top {
-      background: rgba(245, 243, 238, 0.78); backdrop-filter: blur(12px);
-      padding: 12px 15px 10px; border-bottom: 1px solid rgba(255,255,255,0.4);
+      background: rgba(245, 243, 238, 0.48); backdrop-filter: blur(8px);
+      padding: 12px 15px 10px; border-bottom: 1px solid rgba(255,255,255,0.45);
       position: sticky; top: 0; z-index: 35;
     }
     .row { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
     .logo { width: 46px; height: 46px; border-radius: 50%; object-fit: cover; border: 2px solid #133A32; }
-    .langs { display: flex; gap: 4px; background: rgba(255,255,255,0.92); padding: 4px; border-radius: 99px; border: 1px solid #DED9CE; }
+    .langs { display: flex; gap: 4px; background: rgba(255,255,255,0.85); padding: 4px; border-radius: 99px; border: 1px solid #DED9CE; }
     .l-btn { width: 28px; height: 28px; border-radius: 50%; border: none; background: none; font-size: 11px; font-weight: 800; cursor: pointer; color: #374151; }
     .l-btn.on { background: #133A32; color: #FFF; }
-    .world-bar { display: none; margin-top: 8px; background: rgba(255,255,255,0.95); padding: 8px 12px; border-radius: 16px; border: 1px solid #DED9CE; align-items: center; justify-content: space-between; gap: 8px; }
+    .world-bar { display: none; margin-top: 8px; background: rgba(255,255,255,0.9); padding: 8px 12px; border-radius: 16px; border: 1px solid #DED9CE; align-items: center; justify-content: space-between; gap: 8px; }
     .world-bar.show { display: flex; }
     .world-sel { flex: 1; padding: 6px 10px; border-radius: 99px; border: 1px solid #133A32; font-size: 12px; font-weight: 800; color: #133A32; background: #FFF; outline: none; }
     .btn-orange { width: 100%; background: #C85A28; color: #FFF; border: none; padding: 12px; border-radius: 99px; font-size: 16px; font-weight: 800; margin-top: 10px; cursor: pointer; box-shadow: 0 4px 14px rgba(200,90,40,0.4); }
     .dest-bar { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 10px; }
-    .d-btn { background: rgba(255,255,255,0.88); border: 1px solid #DED9CE; padding: 8px 4px; border-radius: 99px; font-size: 12px; font-weight: 800; cursor: pointer; color: #133A32; text-align: center; }
+    .d-btn { background: rgba(255,255,255,0.82); border: 1px solid #DED9CE; padding: 8px 4px; border-radius: 99px; font-size: 12px; font-weight: 800; cursor: pointer; color: #133A32; text-align: center; }
     .d-btn.on { background: #133A32; color: #FFF; border-color: #133A32; }
     .chips { display: flex; gap: 8px; overflow-x: auto; padding-top: 10px; scrollbar-width: none; }
     .chips::-webkit-scrollbar { display: none; }
-    .chip { flex-shrink: 0; background: rgba(255,255,255,0.92); border: 1px solid #DED9CE; padding: 6px 14px; border-radius: 99px; font-size: 12px; font-weight: 700; cursor: pointer; color: #1F2933; }
+    .chip { flex-shrink: 0; background: rgba(255,255,255,0.85); border: 1px solid #DED9CE; padding: 6px 14px; border-radius: 99px; font-size: 12px; font-weight: 700; cursor: pointer; color: #1F2933; }
     .chip.on { background: #C85A28; color: #FFF; border-color: #C85A28; }
     .sec { padding: 15px; }
     .glass {
-      background: rgba(255, 255, 255, 0.84); backdrop-filter: blur(12px);
-      border: 1px solid rgba(255,255,255,0.65); border-radius: 24px;
-      padding: 16px; margin-bottom: 12px; box-shadow: 0 8px 24px rgba(0,0,0,0.14);
-    }
-    .glass-sage {
-      background: rgba(230, 236, 232, 0.88); backdrop-filter: blur(12px);
-      border: 1px solid rgba(255,255,255,0.7); border-radius: 24px; padding: 16px; margin-bottom: 12px;
+      background: rgba(255, 255, 255, 0.56); backdrop-filter: blur(8px);
+      border: 1px solid rgba(255,255,255,0.75); border-radius: 24px;
+      padding: 16px; margin-bottom: 12px; box-shadow: 0 8px 24px rgba(0,0,0,0.12);
     }
     .btn-green { width: 100%; background: #133A32; color: #FFF; padding: 11px; border-radius: 99px; font-size: 14px; font-weight: 800; border: none; cursor: pointer; margin-top: 10px; display: block; text-align: center; text-decoration: none; }
-    .ai-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 10px; text-align: center; }
-    .ai-btn { background: rgba(255,255,255,0.95); border: 1px solid #E5DFD3; border-radius: 14px; padding: 10px 4px; font-size: 11px; font-weight: 800; color: #133A32; cursor: pointer; }
-    .inp { width: 100%; background: #FFF; border: 1px solid #DED9CE; border-radius: 99px; padding: 10px 14px; font-size: 13px; margin-bottom: 10px; outline: none; }
+    .inp { width: 100%; background: rgba(255,255,255,0.92); border: 1px solid #DED9CE; border-radius: 99px; padding: 10px 14px; font-size: 13px; margin-bottom: 10px; outline: none; }
     .f-row { display: flex; gap: 6px; overflow-x: auto; margin-bottom: 6px; scrollbar-width: none; }
-    .f-pill { flex-shrink: 0; background: #FFF; border: 1px solid #DED9CE; padding: 5px 14px; border-radius: 99px; font-size: 12px; font-weight: 700; cursor: pointer; }
+    .f-pill { flex-shrink: 0; background: rgba(255,255,255,0.9); border: 1px solid #DED9CE; padding: 5px 14px; border-radius: 99px; font-size: 12px; font-weight: 700; cursor: pointer; }
     .f-pill.on { background: #133A32; color: #FFF; border-color: #133A32; }
-    .tag { display: inline-block; background: #F5F3EE; border: 1px solid #E2DDD2; padding: 3px 10px; border-radius: 99px; font-size: 11px; font-weight: 700; margin-top: 6px; margin-left: 4px; }
+    .tag { display: inline-block; background: rgba(255,255,255,0.85); border: 1px solid #E2DDD2; padding: 3px 10px; border-radius: 99px; font-size: 11px; font-weight: 700; margin-top: 6px; margin-left: 4px; }
     .social-row { display: flex; justify-content: center; gap: 10px; margin-top: 10px; }
     .soc-btn { background: #133A32; color: #FFF; text-decoration: none; padding: 6px 14px; border-radius: 99px; font-size: 11px; font-weight: 800; }
-    .b-nav { position: fixed; bottom: 0; left: 0; right: 0; max-width: 520px; margin: 0 auto; background: rgba(245,243,238,0.94); backdrop-filter: blur(12px); border-top: 1px solid #E2DDD2; display: grid; grid-template-columns: repeat(5, 1fr); padding: 6px 0; text-align: center; z-index: 35; }
-    .b-item { background: none; border: none; color: #4B5563; font-size: 11px; font-weight: 700; cursor: pointer; }
+    .b-nav { position: fixed; bottom: 0; left: 0; right: 0; max-width: 520px; margin: 0 auto; background: rgba(245,243,238,0.52); backdrop-filter: blur(8px); border-top: 1px solid rgba(255,255,255,0.5); display: grid; grid-template-columns: repeat(5, 1fr); padding: 6px 0; text-align: center; z-index: 35; }
+    .b-item { background: none; border: none; color: #1F2933; font-size: 11px; font-weight: 800; cursor: pointer; }
     .b-item.on { color: #133A32; font-weight: 900; }
     .b-icon { width: 32px; height: 32px; margin: 0 auto 2px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 16px; }
     .b-item.on .b-icon { background: #133A32; color: #FFF; }
@@ -133,7 +127,6 @@
     <div class="sheet"><button onclick="document.getElementById('sheetBox').classList.remove('open')" style="width:32px;height:32px;border-radius:50%;border:1px solid #DED9CE;background:#FFF;font-weight:900;margin-bottom:8px">✕</button><div id="sheetContent"></div></div>
   </div>
 </div>
-
 <script>
   let curDest = 'EU';
   let curTab = 'seekers';
@@ -164,7 +157,7 @@
     document.querySelectorAll('.d-btn').forEach(b => b.classList.remove('on'));
     btn.classList.add('on');
     const app = document.getElementById('appRoot');
-    app.style.backgroundImage = "linear-gradient(to bottom, rgba(19,58,50,0.28), rgba(19,58,50,0.45)), url('" + bgMap[d].img + "')";
+    app.style.backgroundImage = "linear-gradient(to bottom, rgba(0,0,0,0.08), rgba(0,0,0,0.18)), url('" + bgMap[d].img + "')";
     document.getElementById('destLabel').textContent = bgMap[d].label;
     showTab(curTab);
   }
@@ -188,7 +181,7 @@
           <strong style="color:#C85A28;font-size:14px;flex-shrink:0">${i.price}</strong>
         </div>
         <p style="font-size:12px;color:#C85A28;font-weight:800;margin-top:4px">📍 ${i.city}</p>
-        <p style="font-size:12px;color:#374151;margin-top:4px">${i.desc}</p>
+        <p style="font-size:12px;color:#1F2933;margin-top:4px">${i.desc}</p>
         <div class="row" style="margin-top:8px">
           <span class="tag">${i.nie}</span>
           <a href="mailto:alicemplea.eu@://gmail.com{encodeURIComponent(i.title)}" class="btn-green" style="width:auto;padding:6px 14px;margin:0;font-size:12px">✉️ تواصل</a>
@@ -275,3 +268,18 @@
 </script>
 </body>
 </html>
+<!-- شريط التواصل الاجتماعي الرسمي لمنصة Alicemplea -->
+<div class="social-bar" style="display:flex; justify-content:center; align-items:center; gap:14px; padding:14px; background:rgba(15,23,42,0.85); backdrop-filter:blur(8px); border-top:1px solid rgba(255,255,255,0.12); margin-top:20px;">
+  <a href="https://www.facebook.com/share/1CZ6D3YQub/" target="_blank" rel="noopener noreferrer" aria-label="Facebook" style="width:40px; height:40px; border-radius:50%; background:#1877F2; color:#fff; display:flex; align-items:center; justify-content:center; text-decoration:none; font-weight:bold;">
+    <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.95c5.05-.5 9-4.76 9-9.95z"/></svg>
+  </a>
+  <a href="https://www.instagram.com/alicemplea?exln=MW5mcnQyaHdua2tycw==" target="_blank" rel="noopener noreferrer" aria-label="Instagram" style="width:40px; height:40px; border-radius:50%; background:linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888); color:#fff; display:flex; align-items:center; justify-content:center; text-decoration:none;">
+    <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 4 7.6v8.8C4 18.39 5.61 20 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6C20 5.61 18.39 4 16.4 4H7.6m9.65 1.5a1.25 1.25 0 0 1 1.25 1.25A1.25 1.25 0 0 1 17.25 8 1.25 1.25 0 0 1 16 6.75a1.25 1.25 0 0 1 1.25-1.25M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3z"/></svg>
+  </a>
+  <a href="https://www.tiktok.com/@alicemplea?_r=1&_t=ZN-9BRGRBPceiE" target="_blank" rel="noopener noreferrer" aria-label="TikTok" style="width:40px; height:40px; border-radius:50%; background:#000; border:1px solid #25F4EE; color:#fff; display:flex; align-items:center; justify-content:center; text-decoration:none;">
+    <svg width="19" height="19" fill="currentColor" viewBox="0 0 24 24"><path d="M16.6 5.82s.51.5 0 0A4.278 4.278 0 0 1 15.54 3h-3.09v12.4a2.592 2.592 0 0 1-2.59 2.5c-1.42 0-2.6-1.16-2.6-2.6 0-1.72 1.66-3.01 3.37-2.48V9.66c-3.45-.46-6.47 2.22-6.47 5.64 0 3.33 2.76 5.7 5.69 5.7 3.14 0 5.69-2.55 5.69-5.7V9.01a7.35 7.35 0 0 0 4.3 1.38V7.3s-1.88.09-3.24-1.48z"/></svg>
+  </a>
+  <a href="mailto:alicemplea.eu@gmail.com" aria-label="Email" style="width:40px; height:40px; border-radius:50%; background:#0284c7; color:#fff; display:flex; align-items:center; justify-content:center; text-decoration:none;">
+    <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/></svg>
+  </a>
+</div>
