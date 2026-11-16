@@ -298,5 +298,16 @@ document.querySelectorAll('a, button').forEach(el => {
   if (t === 'facebook') el.onclick = (e) => { e.preventDefault(); openSocial('fb'); };
 });
 </script>
-</body>
+<script id="sb-loader"></script>
+<script>
+  const SB_URL = 'https://' + 'dtwnegzgiibqbxmmladg' + '.supabase.co';
+  const SB_KEY = 'sb_publishable_3QTj4uytwLz7dOGlHMb2dw_r6tDhiCE';
+  const s = document.getElementById('sb-loader');
+  s.src = 'https://' + 'cdn.jsdelivr.net' + '/npm/@supabase/supabase-js@2';
+  s.onload = () => {
+    window.alicempleaDB = supabase.createClient(SB_URL, SB_KEY);
+    console.log('Supabase Connected');
+  };
+</script>
+</body>  
 </html>
